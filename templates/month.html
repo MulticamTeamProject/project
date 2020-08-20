@@ -1,11 +1,25 @@
 <style>
     .title{
         font-size: 32px;
-        font-family:NanumSquareB;
+        /* font-family:나눔스퀘어 Bold; */
         text-align: center;
-
     }
+
 </style>
+<script src="http://code.jquery.com/jquery-3.1.1.js"></script>
+<script>
+     $(document).ready(function () {
+        $('#btn1').click(function(){
+            $('#adIframe').empty();
+            $('#adIframe').append("<p><iframe src='/month_1' style='width: 100%; height:600px'></iframe></p>");
+        })
+        $('#btn2').click(function(){
+            $('#adIframe').empty();
+            $('#adIframe').append("<p><iframe src='/month_2' style='width: 100%; height:600px'></iframe></p>");
+        })
+    })
+</script>
+
 <!--첫 시작 페이지-->
 <!--이전에 상속받은 layout.html이 날아옴-->
 {% extends 'layout.html' %} 
@@ -15,7 +29,8 @@
 {% endblock %} 
 
 {% block contents %}
-<div class="dropdown dropright">
+<!-- 월선택 드롭박스 -->
+<!-- <div class="dropdown dropright"> 
     <button type="button" class="btn btn-outline-dark dropdown-toggle" data-toggle="dropdown">
       MONTH
     </button>
@@ -33,5 +48,21 @@
       <a class="dropdown-item" href="#">11월</a>
       <a class="dropdown-item" href="#">12월</a>
     </div>
-  </div>
+  </div> -->
+
+  <button type="button" class="btn btn-outline-dark" id="btn1">1월</button>
+  <button type="button" class="btn btn-outline-dark" id="btn2">2월</button>
+  <button type="button" class="btn btn-outline-dark" id="btn3">3월</button>
+  <button type="button" class="btn btn-outline-dark" id="btn4">4월</button>
+  <button type="button" class="btn btn-outline-dark" id="btn5">5월</button>
+  <button type="button" class="btn btn-outline-dark" id="btn6">6월</button>
+  <button type="button" class="btn btn-outline-dark" id="btn7">7월</button>
+  <button type="button" class="btn btn-outline-dark" id="btn8">8월</button>
+  <button type="button" class="btn btn-outline-dark" id="btn9">9월</button>
+  <button type="button" class="btn btn-outline-dark" id="btn10">10월</button>
+  <button type="button" class="btn btn-outline-dark" id="btn11">11월</button>
+  <button type="button" class="btn btn-outline-dark" id="btn12">12월</button>
+
+ <div id="adIframe"></div>
+  
 {% endblock %}

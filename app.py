@@ -21,5 +21,13 @@ def advise_course():
 def month():
     return render_template('month.html')
 
+@app.route('/month_1') # 1월테스트
+def month_1():
+    return render_template('month_1.html')
+
+@app.route('/month_2') # 2월테스트
+def month_2():
+    return render_template('month_2.html')
+
 # 서버실행
 app.run('127.0.0.1',5000,debug=True)

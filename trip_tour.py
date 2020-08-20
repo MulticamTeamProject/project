@@ -6,7 +6,8 @@ import pandas as pd
 
 nation = ['홍콩'] # 나라이름
 target = nation[0] + '관광명소' # 검색이름
-final_result = [] # 정돈된 데이터 셋을 저장할 변수
+result = [] # 데이터 정리를 위한 임시변수
+final_result = [] # 최종 데이터 저장변수
 
 url = 'https://www.google.com/maps/?hl=ko'
 driver = webdriver.Chrome(executable_path="./chromedriver.exe")
@@ -22,8 +23,8 @@ for i in range(1,10,2): # 40까지 해야 20개 추출함
     driver.find_element_by_xpath(xpath).click()                                 # 요소클릭
     time.sleep(4)
     rcv_data = driver.page_source                       # 검색한 웹페이지 소스코드 긁어오기
-    soupData = BeautifulSoup(rcv_data, 'html.parser')   # 그 중에 html이라는 부분 데이터를 가져옴
-    datas = soupData.find('div',{'id':'pane'})          # 긁어오고자 하는 데이터들이 담긴 div
+    soupData = BeautifulSoup(rcv_data, 'html.parser')   # html이라는 부분 데이터를 가져옴
+    datas = soupData.find('div',{'id':'pane'})          # 긁어오고자 하는 데이터들이 담긴 div~ 데이터들
 
     target_name = ['h1', 'span', 'div', 'div'] # 찾고자 하는 데이터의 태그(순서 : 관광지이름, 별점, 간략설명, 주소, 위도, 경도)
     target_class = [                           # 찾고자하는 데이터의 태그들의 클래스
@@ -48,10 +49,18 @@ for i in range(1,10,2): # 40까지 해야 20개 추출함
     r_data.append([current_url[0]]) # 위도
     r_data.append([current_url[1]]) # 경도
 
-    final_result.append(r_data) # 마지막에 정돈된 하나의 행 데이터를 추가
+    result.append(r_data) # 마지막에 정돈된 하나의 행 데이터를 추가 / 근데 이때 살펴보면 알겠지만 12개 중에 필요없는 데이터 발생
 
     driver.find_element_by_xpath('//*[@id="pane"]/div/div[1]/div/div/button').click() # 뒤로가기
     time.sleep(3)
 
-print(final_result)
 driver.close()
+for x in result:
+    temp = []
+    temp.append(x[:4])  # 관광지이름, 별점, 간략설명, 주소
+    temp.append(x[-2])  # 위도  
+    temp.append(x[-1])  # 경도
+    final_result.append(temp)
+
+df = pd.DataFrame(final_result,columns=['Name','Score','Description','addr','Latitude','Longitude'])
+df.to_csv('test.csv', encodings='cp949')

@@ -1,0 +1,40 @@
+import numpy as np
+import pandas as pd
+import matplotlib
+import matplotlib.pyplot as plt
+import seaborn as sns
+%matplotlib inline
+jeonnam = pd.read_excel('주요관광지점입장객_충북(2011-2019).xls', header=None).copy()
+temp = ['시도', '군구', '관광지', '내/외국인']
+jeonnam.loc[1][:4] = temp
+jeonnam.drop(0, inplace = True)
+jeonnam.columns = jeonnam.loc[1]
+jeonnam.drop(1, inplace = True)
+jeonnam.drop(['인원계'], axis=1, inplace=True)
+#jeonnam.head(5)
+jeonnam.index = np.arange(len(jeonnam))
+jeonnam.replace('-', 0, inplace=True)
+#jeonnam.head(5)
+r_data = []
+for data in jeonnam[jeonnam.loc[:]['내/외국인'] == '내국인'].index:
+    year = 2014
+    month = 0
+    for num in range(len(jeonnam.columns)-4):
+        if num%12==0: 
+            year+=1
+            month=1
+        temp = []
+        temp.append(jeonnam.loc[data]['군구'])
+        temp.append(jeonnam.loc[data]['관광지'])
+        temp.append(year)
+        temp.append(month)
+        month+=1
+        temp.append(jeonnam.loc[data][num+4])
+        if jeonnam.loc[data+1][3] == '외국인':
+            temp.append(jeonnam.loc[data+1][num+4])
+        else:
+            temp.append(0)
+        r_data.append(temp)
+#r_data[:15]
+df = pd.DataFrame(r_data, columns=['Gungu', 'Name', 'Year', 'Month', 'Korean', 'Foreigner'])
+df.to_csv('충북.csv', encoding='cp949', mode='w')

@@ -29,5 +29,7 @@ def month_1():
 def month_2():
     return render_template('month_2.html')
 
+
+
 # 서버실행
 app.run('127.0.0.1',5000,debug=True)

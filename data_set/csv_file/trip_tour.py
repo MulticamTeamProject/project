@@ -14,9 +14,9 @@ driver.get(url) # 드라이버로 열기
 time.sleep(3)
 driver.find_element_by_xpath('//*[@id="searchboxinput"]').send_keys(target) # 검색어 입력
 driver.find_element_by_xpath('//*[@id="searchbox-searchbutton"]').click() # 검색클릭
-time.sleep(3)
+time.sleep(4)
 
-for i in range(1,22,2):
+for i in range(1,10,2): # 40까지 해야 20개 추출함
 
     xpath = '//*[@id="pane"]/div/div[1]/div/div/div[2]/div[1]/div[%d]' % (i)    # 요소별 클릭 주소
     driver.find_element_by_xpath(xpath).click()                                 # 요소클릭
@@ -36,13 +36,17 @@ for i in range(1,22,2):
     r_data = [] # 웹페이지에서 문자만을 담을 변수(정돈할 변수)
     for i in range(len(target_name)):    # 4개의 데이터 돌아가면서 찾기
         for data in datas.findAll(target_name[i],target_class[i]):
-            r_data.append(list(data.strings))
+            temp = list(data.strings)
+            if (len(temp) == 4) | (len(temp) == 3):
+                r_data.append([temp[1]])
+            else:
+                r_data.append(temp)
 
     current_url = driver.current_url    # 위도,경도를 받기위한 현재주소 얻어오기
     current_url = current_url.split('@')    
     current_url = current_url[1].split(',') 
-    r_data.append(current_url[0]) # 위도
-    r_data.append(current_url[1]) # 경도
+    r_data.append([current_url[0]]) # 위도
+    r_data.append([current_url[1]]) # 경도
 
     final_result.append(r_data) # 마지막에 정돈된 하나의 행 데이터를 추가
 
@@ -50,3 +54,4 @@ for i in range(1,22,2):
     time.sleep(3)
 
 print(final_result)
+driver.close()

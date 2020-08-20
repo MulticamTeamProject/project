@@ -17,5 +17,9 @@ def advise_nation():
 def advise_course():
     return render_template('course_main.html')
 
+@app.route('/month') # 월별 추천
+def month():
+    return render_template('month.html')
+
 # 서버실행
 app.run('127.0.0.1',5000,debug=True)

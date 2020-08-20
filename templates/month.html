@@ -1,0 +1,37 @@
+<style>
+    .title{
+        font-size: 32px;
+        font-family:NanumSquareB;
+        text-align: center;
+
+    }
+</style>
+<!--첫 시작 페이지-->
+<!--이전에 상속받은 layout.html이 날아옴-->
+{% extends 'layout.html' %} 
+<!--교체영역1-->
+{% block pageTitle %}
+<div class=title>월별 여행지 추천서비스</div>
+{% endblock %} 
+
+{% block contents %}
+<div class="dropdown dropright">
+    <button type="button" class="btn btn-outline-dark dropdown-toggle" data-toggle="dropdown">
+      MONTH
+    </button>
+    <div class="dropdown-menu">
+      <a class="dropdown-item" href="#">1월</a>
+      <a class="dropdown-item" href="#">2월</a>
+      <a class="dropdown-item" href="#">3월</a>
+      <a class="dropdown-item" href="#">4월</a>
+      <a class="dropdown-item" href="#">5월</a>
+      <a class="dropdown-item" href="#">6월</a>
+      <a class="dropdown-item" href="#">7월</a>
+      <a class="dropdown-item" href="#">8월</a>
+      <a class="dropdown-item" href="#">9월</a>
+      <a class="dropdown-item" href="#">10월</a>
+      <a class="dropdown-item" href="#">11월</a>
+      <a class="dropdown-item" href="#">12월</a>
+    </div>
+  </div>
+{% endblock %}

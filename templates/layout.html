@@ -1,10 +1,18 @@
-<!--상단 메뉴바를 고정해서 사용하기 위한 웹페이지(상단메뉴바페이지)-->
 <!DOCTYPE html>
 <html lang="ko">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+    @font-face {
+    font-family:'BMJUA';
+    src: url('/static/fonts/BMJUA_ttf.ttf'); /*폰트지정*/
+    }
+    .navbar{
+    font-family: 'BMJUA';
+    }
+    </style>
     <title>여행가조</title>
     <!-- 부트스트랩 연결 -->
     <!-- Latest compiled and minified CSS -->
@@ -15,11 +23,30 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-
+    <!--css font-->
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
+    <!--그림폰트 연결-->
+     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" 
+     integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous"> 
+    <!--사용자정의 css 파일 연결-->
+     <link rel="stylesheet" href="/static/css/custom.css">
+    <style>
+    .footer { width: 100%; height: 15%; clear: both; 
+      background-color:rgb(66, 180, 201); }
+    .navbar-brand{
+      font-size: 40px;
+      margin-right:4px;
+    }
+    .navbar-nav{
+      font-size: 20px;
+    }
+    </style> 
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">여행가조</a>
+  <div class="container">
+		<!-- 상단 헤더 영역 -->
+  <nav class="navbar navbar-expand-lg bg-info navbar-dark fixed top" >
+  <a class="navbar-brand" href="/">여행가조<i class="fas fa-plane"></i></a> 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -29,26 +56,31 @@
         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/advise_nation">Features</a>
+        <a class="nav-link" href="/advise_nation">추천명소</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/advise_course">Pricing</a>
+        <a class="nav-link" href="/advise_course">추천코스</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/month">월별추천</a>
       </li>
     </ul>
   </div>
   </nav>
    <!-- 교체 영역1 -->
-    {% block pageTitle %}
-    
-    {% endblock %}
-    
-    
-    <!-- 교체 영역2 -->
-    <!-- <div>컨텐츠 내용</div> -->
+  {% block pageTitle %}
+  
+  {% endblock %}
+  <!-- 교체 영역2 -->
+  <!-- <div>컨텐츠 내용</div> -->
     {% block contents %}
     
     {% endblock %}
-    
+  <br>
+  <!-- 하단 카피라이트 영역 -->
+  <div class="footer" style=text-align:center><p>Copyright (C) 여행가조. All Rights Reserved.</p></div>
+  </div>
+  </br>
 </body>
 
 </html>

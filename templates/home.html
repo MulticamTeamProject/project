@@ -1,11 +1,121 @@
-<!--첫 시작 페이지-->
-<!--이전에 상속받은 layout.html이 날아옴-->
-{% extends 'layout.html' %} 
-<!--교체영역1-->
-{% block pageTitle %}
-About
-{% endblock %} 
-<!--교체영역2-->
-{% block contents %}
-About Page Area
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- 부트스트랩 연결 -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!--css font-->
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
+    <!--그림폰트 연결-->
+     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" 
+     integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous"> 
+</head>
+<style>
+  @font-face {
+    font-family:'BlackHanSans';
+    src: url('/static/fonts/BlackHanSans-Regular.ttf'); /*폰트지정*/
+  }
+  .m-trip-sketch__inner{
+    display:flex;
+    font-size:40px;
+    font-family: 'BlackHanSans';;
+  }
+  .c-sketch-text-v2__text{
+    flex:2;
+    margin-right: 70px;
+    font-size:20px;
+  }
+</style>
+<body>
+  <!--첫 시작 페이지-->
+  <!--이전에 상속받은 layout.html이 날아옴-->
+  {% extends 'layout_pj.html' %}
+  <!--이미지 carousel 슬라이드-->
+  {% block pageTitle %}
+  <div id="demo" class="carousel slide" data-ride="carousel" style="width:80%;margin:20px auto;">
+
+    <!-- Indicators -->
+    <ul class="carousel-indicators">
+      <li data-target="#demo" data-slide-to="0" class="active"></li>
+      <li data-target="#demo" data-slide-to="1"></li>
+      <li data-target="#demo" data-slide-to="2"></li>
+      <li data-target="#demo" data-slide-to="3"></li>
+    </ul>
+
+    <!-- The slideshow -->
+    <div class="carousel-inner" >
+      <div class="carousel-item active">
+        <img src="/static/images/summer.jpg" alt="summer" width="700px" height="400px">
+      </div>
+      <div class="carousel-item">
+        <img src="/static/images/korea.jpg" alt="korea" width="700px" height="400px"> 
+      </div>
+      <div class="carousel-item">
+        <img src="static/images/winter.jpg" alt="winter" width="700px" height="400px">
+      </div>
+      <div class="carousel-item">
+        <img src="static/images/sweden.jpg" alt="sweden" width="700px" height="400px">
+      </div>
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="carousel-control-prev" href="#demo" data-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </a>
+    <a class="carousel-control-next" href="#demo" data-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </a>
+  </div>
+  <!--이미지 밑에 설명-->
+  <div class="home-wrapper">
+    <div class="home-wrapper-inner">
+      <div class="m-trip-sketch">
+        <div class="m-trip-sketch__inner">
+          <div class="m-trip-sketch__item">
+            <div class="c-sketch-text-v2">
+              <div class="c-sketch-text-v2__image">
+                <i class="fas fa-thumbtack"></i></div>
+              <div class="c-sketch-text-v2__text">
+                <h3 class="c-sketch-text-v2__tit">최근 5년간 분석</h3>
+                <div class="c-sketch-text-v2__desc">최근 5년간 국내여행Top3와 증가율까지 보여줍니다</div>
+              </div>
+            </div>
+          </div>
+          <div class="m-trip-sketch__item">
+            <div class="c-sketch-text-v2">
+              <div class="c-sketch-text-v2__image">
+                <i class="fas fa-thumbtack"></i>
+              </div>
+              <div class="c-sketch-text-v2__text">
+                <h3 class="c-sketch-text-v2__tit">해외인기여행지</h3>
+                <div class="c-sketch-text-v2__desc">꼭 가봐야 할 여행지 필수코스 추천</div>
+              </div>
+            </div>
+          </div>
+          <div class="m-trip-sketch__item">
+            <div class="c-sketch-text-v2">
+              <div class="c-sketch-text-v2__image">
+                <i class="fas fa-thumbtack"></i>
+              </div>
+              <div class="c-sketch-text-v2__text">
+                <h3 class="c-sketch-text-v2__tit">맛집,명소 다양한 추천</h3>
+                <div class="c-sketch-text-v2__desc">별점높은 로컬맛집까지 소개</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> 
+  </div> 
+  {% endblock %} 
+</body>
+</html>

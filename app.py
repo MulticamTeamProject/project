@@ -32,6 +32,10 @@ def month_2():
 @app.route('/test') # 테스트화면 임시
 def test():
     return render_template('test.html')
+    
+@app.route('/advise_korea') # 국내여행지추천
+def advise_korea():
+    return render_template('korea_advise.html')
 
 
 # 서버실행

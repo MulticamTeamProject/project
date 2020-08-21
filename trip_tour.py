@@ -1,14 +1,27 @@
+# 지역별 구글맵 데이터 가져오기(미완성)
 from selenium import webdriver
 from itertools import count
 import time
 from bs4 import BeautifulSoup
 import pandas as pd
+import urllib.parse
+import shutil, os
+
+#나중에 지역별 사진폴더를 만들 기본 주소(개별 pc에서 돌리려면 폴더 주소 지정하셔야 합니다.)
+base_dir = 'C:/Users/student/sky/github_test/해외사진/'
 
 nation = ['홍콩'] # 나라이름
 result = [] # 데이터 정리를 위한 임시변수
 final_result = [] # 최종 데이터 저장변수
 
 for na in nation:
+
+    # 사진을 담아놓을 폴더 만들기(경로가 있으면 하지 않는다)
+    path = os.path.join(base_dir,na)
+    if os._exists(path):
+        shutil.rmtree(path)
+        os.makedirs(path)
+
     target = na + ' 관광명소'
     url = 'https://www.google.com/maps/?hl=ko'
     driver = webdriver.Chrome(executable_path="./chromedriver.exe")
@@ -19,7 +32,7 @@ for na in nation:
     time.sleep(4)
 
     for _ in range(0,3):
-        for i in range(1,40,2): # 40까지 해야 20개 추출함
+        for i in range(1,10,2): # 40까지 해야 20개 추출함
 
             xpath = '//*[@id="pane"]/div/div[1]/div/div/div[2]/div[1]/div[%d]' % (i)    # 요소별 클릭 주소
             driver.find_element_by_xpath(xpath).click()                                 # 요소클릭
@@ -45,15 +58,16 @@ for na in nation:
                         r_data.append(temp)
 
             if len(r_data) == 2:
-                r_data.append('-')              # 앞에서 간략설명에 대한 데이터 태그가 없는 경우에 - 를 추가하여 데이터 전처리
+                r_data.append('-')  # 앞에서 간략설명에 대한 데이터 태그가 없는 경우에 - 를 추가하여 데이터 전처리
 
-            current_url = driver.current_url    # 위도,경도를 받기위한 현재주소 얻어오기
-            current_url = current_url.split('@')    
-            current_url = current_url[1].split(',') 
-            r_data.append([current_url[0]]) # 위도
-            r_data.append([current_url[1]]) # 경도
+            result.append(r_data) # 마지막에 정돈된 하나의 행 데이터를 추가
 
-            result.append(r_data) # 마지막에 정돈된 하나의 행 데이터를 추가 / 근데 이때 살펴보면 알겠지만 12개 중에 필요없는 데이터 발생
+            # 이미지 처리 부분(미완료)
+            for data in datas.findAll('div',{'class':'section-image-container'}):
+                imgUrl = str(list(data)[1])
+                imgUrl = str(imgUrl.split('url(')[1])
+                imgUrl = imgUrl.split(')')[0]
+                urllib.request.urlretrieve(imgUrl, path + '/' + str(r_data[0][0]) +'.jpg')    # 폴더에 저장
 
             driver.find_element_by_xpath('//*[@id="pane"]/div/div[1]/div/div/button').click() # 뒤로가기
             time.sleep(5)
@@ -67,9 +81,7 @@ for na in nation:
         temp = []
         for i in range(0,len(target_name)):
             temp.append(x[i][0])
-        temp.append(x[-2][0])
-        temp.append(x[-1][0])
         final_result.append(temp)
 
-    df = pd.DataFrame(final_result,columns=['Name','Score','Description','Latitude','Longitude'])
-    df.to_csv('test.csv', encoding='cp949')
+    df = pd.DataFrame(final_result,columns=['Name','Score','Description'])
+    df.to_csv('%s.csv' % (na), encoding='cp949')

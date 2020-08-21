@@ -1,5 +1,6 @@
 # flask 모듈 임포트
 from flask import Flask, render_template, request
+import db
 
 # flask 객체 생성
 app = Flask(__name__)
@@ -9,9 +10,19 @@ app = Flask(__name__)
 def index():
     return render_template('home.html')
 
+# 메인에서는 현재 월/년도 인기 관광지 표시
 @app.route('/advise_nation') # 추천 여행지 주소
 def advise_nation():
-    return render_template('advise_main.html')
+    popular_dict = db.get_popular_list_month(8)
+    popular_dict_year = db.get_popular_list_year(2020)
+    # popular_dict = db.get_popular_list()
+    return render_template('advise_main.html', popular_dict=popular_dict, month=8, popular_dict_year=popular_dict_year, year=2020)
+
+# 월(지역별)은 top5/내-외국인비율 표시
+@app.route('/korea_month_<no1>+loc_<no2>')
+def month_loc(no1, no2):
+    popular_dict, city = db.get_popular_list_month_loc(no1, int(no2))
+    return render_template('korea_month+loc.html', popular_dict=popular_dict, month=no1, city=city)
 
 @app.route('/advise_course') # 추천 코스 주소
 def advise_course():

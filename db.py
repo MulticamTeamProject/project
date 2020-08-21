@@ -108,13 +108,13 @@ def get_popular_list_month_loc(month, loc):
     locDict = {1:'seoultbl', 2:'gangwontbl', 3:'gyeonggitbl', 4:'gyeongnamtbl', 5:'gyeongbuktbl',
                  6:'gwangjutbl', 7:'daegutbl', 8:'daejeontbl', 9:'busantbl', 10:'sejongtbl', 
                  11:'ulsantbl', 12:'incheontbl', 13:'jeonnamtbl', 14:'jeonbuktbl', 15:'jejutbl', 16:'chungnamtbl', 17:'chungbuktbl'}
+
+    city = {1:'서울', 2:'강원', 3:'경기', 4:'경남', 5:'경북',
+                 6:'광주', 7:'대구', 8:'대전', 9:'부산', 10:'세종', 
+                 11:'울산', 12:'인천', 13:'전남', 14:'전북', 15:'제주', 16:'충남', 17:'충북'}
     
-    # sql = '''with abc(gungu, name, korean, foreigner)
-    #     as (select GUNGU, name, sum(korean) as korean, sum(foreigner) as foreigner from %s where month = %s group by name)
-    #     select gungu, name, korean, foreigner, korean+foreigner as total from abc order by total desc limit 5; '''
     sql = 'with abc(gungu, name, korean, foreigner) as (select GUNGU, name, sum(korean) as korean, sum(foreigner) as foreigner from ' + locDict[loc]+' where month = %s group by name) select gungu, name, korean, foreigner, korean+foreigner as total from abc order by total desc limit 5'
 
-    # cursor.execute(sql, (location, month))
     cursor.execute(sql, month)
     result = cursor.fetchall()
 
@@ -132,12 +132,10 @@ def get_popular_list_month_loc(month, loc):
     
     # 접속 종료
     conn.close()
-    city = {1:'서울', 2:'강원', 3:'경기', 4:'경남', 5:'경북',
-                 6:'광주', 7:'대구', 8:'대전', 9:'부산', 10:'세종', 
-                 11:'울산', 12:'인천', 13:'전남', 14:'전북', 15:'제주', 16:'충남', 17:'충북'}
+    
     return temp_list, city[loc]
 
-# 최근 5년치 각 연도별로 인기있는 관광지 가져오는 함수
+# 최근 5년치 각 연도별로 인기있는 관광지 가져오는 함수 -> 어떤 데이터를 가져올지?
 def get_popular_list_year(year):
     # 커서 생성
     conn = get_connection()

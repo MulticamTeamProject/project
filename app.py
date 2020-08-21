@@ -17,9 +17,9 @@ def advise_nation():
 def advise_course():
     return render_template('course_main.html')
 
-@app.route('/month') # 월별 추천
+@app.route('/overseas') # 월별 추천
 def month():
-    return render_template('month.html')
+    return render_template('overseas.html')
 
 @app.route('/month_1') # 1월테스트
 def month_1():
@@ -28,6 +28,15 @@ def month_1():
 @app.route('/month_2') # 2월테스트
 def month_2():
     return render_template('month_2.html')
+
+@app.route('/test') # 테스트화면 임시
+def test():
+    return render_template('test.html')
+    
+@app.route('/advise_korea') # 국내여행지추천
+def advise_korea():
+    return render_template('korea_advise.html')
+
 
 # 서버실행
 app.run('127.0.0.1',5000,debug=True)

@@ -5,20 +5,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <style>
-        li{
-            font-size: 30px;
-        }
+    @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+    /* .list{
+        font-size: 30px;
+        text-align: center;
+        font-family: 'Do Hyeon', sans-serif;
+        padding: 20px;
+    } */
+    .blue{
+        color:CornflowerBlue;
+        font-size: 25px;
+        font-family: 'Do Hyeon', sans-serif;
+        padding: 10px;
+    }
+    .pink{
+        color:MistyRose;
+        font-size: 25px;
+        font-family: 'Do Hyeon', sans-serif;
+        padding: 10px;
+    }
+    .green{
+        color:MediumAquamarine;
+        font-size: 25px;
+        font-family: 'Do Hyeon', sans-serif;
+        padding: 10px;
+    }
+    .pink2{
+        color: cornflowerblue;
+    }
+    .tc{
+        color: black;
+    }
     </style>
+
 </head>
 <body>
-    <h1>1월 테스트</h1>
-    <img src="/graph_test.png" width="500", height="500" alt="test">
+    <!-- <div class=title><mark class='blue'>1월</mark></div> -->
+    <!-- 표 테스트 -->
+    <table align="center"  width="80%" height="700%" cellpadding=20>
+        <tr>
+            <td align="center">1월</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td align="center" width=70%>
+                <img src="/graph_test.png" width="500px" height="500px">
+            </td>
+            <td>
+            <!-- <td class="list" align="center"> -->
+                <!-- <mark class="blue" href="/test">베트남</mark><br>
+                </div><mark class="pink">중국</mark><br>
+                </div><mark class="green">일본</mark> -->
 
-    <ul>
-        <li>베트남</li>
-        <li>일본</li>
-        <li>중국</li>
-    </ul>
+
+                <div class="container">
+                    <ul class="nav flex-column">
+                      <li class="nav-item">
+                        <a class="nav-link pink" href="/test" target="_blank">■ 베트남</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link green" href="/test" target="_blank">■ 중국</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link blue" href="/test" target="_blank">■ 일본</a>
+                      </li>
+                    </ul>
+                  </div>
+            </td>
+        </tr>
+    </table>
+
 </body>
 </html>

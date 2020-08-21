@@ -20,7 +20,7 @@
 </div>
 <div class="text-center">
 <form action = "">
-    <h1>월별 인기 여행지 보기</h1>
+    <h1>{{city}} {{month}}월 인기 여행지</h1>
     <fieldset>
     <select id = "selMonth" class="btn btn-light dropdown-toggle">
      <option value = "1">1</option>
@@ -80,9 +80,9 @@
         </div>
         <div class="col-lg-6">
             <div class="card">
-                <div class="card-body"> <canvas id="myChart2"></canvas> </div>
+                <div class="card-body"> <canvas id="myChart3"></canvas> </div>
                 <div class="card card-body text-center bg-light">
-                    <h3 id="year">{{year}}년</h3>
+                    <h3 id="kofo">내국인/외국인</h3>
                 </div>
             </div>
         </div>
@@ -114,94 +114,33 @@
     // document.write(array[0]["gungu"]);
     // document.write(array[0]["name"]);
 
-    var array1 = {{popular_dict_year|tojson}};
-
     // 차트에 표시할 라벨, 데이터 만들기
     var label_array = []
-    var label_array1 = []
     var data_array = []
-    var data_array1 = []
+    // 내/외국인 합
+    var sum_ko = 0
+    var sum_fo = 0
     for (var i=0; i<5; i++){
         label_array.push(array[i]["name"]);
-        label_array1.push(array1[i]["name"]);
         data_array.push(array[i]["total"]);
-        data_array1.push(array1[i]["total"]);
-    }
-    
-    
 
-    //월
+        sum_ko += array[i]["korean"]
+        sum_fo += array[i]["foreigner"]
+    }
+
     data = {
         datasets: [{ backgroundColor: ['red', 'yellow', 'green', 'blue', 'purple'], data: data_array }], // 라벨의 이름이 툴팁처럼 마우스가 근처에 오면 나타남
         labels : label_array
     }; 
-    //년도
-    data1 = {
-        datasets: [{ backgroundColor: ['red', 'yellow', 'green', 'blue', 'purple'], data: data_array1 }], // 라벨의 이름이 툴팁처럼 마우스가 근처에 오면 나타남
-        labels : label_array1
+    //내/외국인
+    data2 = {
+        datasets: [{ backgroundColor: ['red', 'blue'], data: [sum_ko, sum_fo] }], // 라벨의 이름이 툴팁처럼 마우스가 근처에 오면 나타남
+        labels : ["내국인", "외국인"]
     }; 
-    
-    // 도넛형 차트 
+    // 가운데 구멍이 없는 파이형 차트 
     var ctx1 = document.getElementById("myChart1"); var myMonthChart = new Chart(ctx1, { type: 'doughnut', data: data, options: {} }); 
-    var ctx2 = document.getElementById("myChart2"); var myYearChart = new Chart(ctx2, { type: 'doughnut', data: data1, options: {} });
-    
+    var ctx3 = document.getElementById("myChart3"); var myKoFoChart = new Chart(ctx3, { type: 'doughnut', data: data2, options: {} });
 </script>
-
-
-
-
-
-
-
-
-<!-- 막대그래프
-<script>
-    var ctx = document.getElementById("myChart").getContext('2d');
-    /*
-    - Chart를 생성하면서, 
-    - ctx를 첫번째 argument로 넘겨주고, 
-    - 두번째 argument로 그림을 그릴때 필요한 요소들을 모두 넘겨줍니다. 
-    */
-    var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: label_data,
-            // labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-            datasets: [{
-                label: '# of Votes',
-                data: label_data_data, //[12, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            maintainAspectRatio: true, // default value. false일 경우 포함된 div의 크기에 맞춰서 그려짐.
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero:true
-                    }
-                }]
-            }
-        }
-    });
-
-</script> -->
 
 
 {% endblock %} 

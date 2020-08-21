@@ -7,53 +7,54 @@
         font-family: 'Noto Sans KR', sans-serif;
         padding: 20px;
     }
-    @font-face {
-    font-family:'BMJUA';
-    src: url('/static/fonts/BMJUA_ttf.ttf'); /*폰트지정*/
-    }
     .reMenu{
       font-family: 'Nanum Gothic Coding', monospace;
     }
-    .title{
-        font-family:'BMJUA'
-    }
+
 </style>
 <!-- jquery -->
 <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
 <!-- btn클릭하면 기존 데이터 지우고 데이터 append -->
 <script>
+    // var selMonth = document.getElementById("selMonth");
+    // var month = selMonth.value;
+    // var selLoc = document.getElementById("selLoc");
+    // var loc = selLoc.value;
+    // // 들어온 값, 지역 페이지에 따라 보내기
+    // location.href ="korea_month_"+month+"+loc_"+loc;
+
      $(document).ready(function () {
         $('#btn1').click(function(){
             $('#adIframe').empty();
-            $('#adIframe').append("<p><iframe src='/month_1' style='width: 100%; height:600px; border:none'></iframe></p>");
+            $('#adIframe').append("<p><iframe src='/korea_month_1+loc_1' style='width: 100%; height:600px; border:none'></iframe></p>");
         })
         $('#btn2').click(function(){
             $('#adIframe').empty();
-            $('#adIframe').append("<p><iframe src='/month_2' style='width: 100%; height:600px; border:none'></iframe></p>");
+            $('#adIframe').append("<p><iframe src='/korea_month_2+loc_1' style='width: 100%; height:600px; border:none'></iframe></p>");
         })
         $('#btn3').click(function(){
             $('#adIframe').empty();
-            $('#adIframe').append("<p><iframe src='/month_1' style='width: 100%; height:600px; border:none'></iframe></p>");
+            $('#adIframe').append("<p><iframe src='/korea_month_3+loc_1' style='width: 100%; height:600px; border:none'></iframe></p>");
         })
         $('#btn4').click(function(){
             $('#adIframe').empty();
-            $('#adIframe').append("<p><iframe src='/month_2' style='width: 100%; height:600px; border:none'></iframe></p>");
+            $('#adIframe').append("<p><iframe src='/korea_month_4+loc_1' style='width: 100%; height:600px; border:none'></iframe></p>");
         })
         $('#btn5').click(function(){
             $('#adIframe').empty();
-            $('#adIframe').append("<p><iframe src='/month_1' style='width: 100%; height:600px; border:none'></iframe></p>");
+            $('#adIframe').append("<p><iframe src='/korea_month_5+loc_1' style='width: 100%; height:600px; border:none'></iframe></p>");
         })
         $('#btn6').click(function(){
             $('#adIframe').empty();
-            $('#adIframe').append("<p><iframe src='/month_2' style='width: 100%; height:600px; border:none'></iframe></p>");
+            $('#adIframe').append("<p><iframe src='/korea_month_6+loc_1' style='width: 100%; height:600px; border:none'></iframe></p>");
         })
         $('#btn7').click(function(){
             $('#adIframe').empty();
-            $('#adIframe').append("<p><iframe src='/month_1' style='width: 100%; height:600px; border:none'></iframe></p>");
+            $('#adIframe').append("<p><iframe src='/korea_month_7+loc_1' style='width: 100%; height:600px; border:none'></iframe></p>");
         })
         $('#btn8').click(function(){
             $('#adIframe').empty();
-            $('#adIframe').append("<p><iframe src='/month_2' style='width: 100%; height:600px; border:none'></iframe></p>");
+            $('#adIframe').append("<p><iframe src='/korea_month_'+1+'+loc_1' style='width: 100%; height:600px; border:none'></iframe></p>");
         })
         $('#btn9').click(function(){
             $('#adIframe').empty();
@@ -88,7 +89,7 @@
 <!--교체영역1-->
 {% block pageTitle %}
 <!-- 해외여행 타이틀 -->
-<div class='title'>해외 여행지 추천서비스</div>
+<div class='title'>국내 여행지 추천서비스</div>
 {% endblock %} 
 
 {% block contents %}
@@ -122,6 +123,6 @@
   <hr>
 
  <!-- 월별 추천 iframe 위치 지정 -->
- <div id="adIframe"><p><iframe src='/month_1' style='width: 100%; height:600px; border:none'></iframe></p></div> 
+ <div id="adIframe"><p><iframe src='/korea_month_8+loc_1' style='width: 100%; height:600px; border:none'></iframe></p></div> 
   
 {% endblock %}

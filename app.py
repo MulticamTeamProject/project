@@ -1,6 +1,6 @@
 # flask 모듈 임포트
 from flask import Flask, render_template, request
-import db
+import db;
 
 # flask 객체 생성
 app = Flask(__name__)
@@ -46,7 +46,10 @@ def test():
     
 @app.route('/advise_korea') # 국내여행지추천
 def advise_korea():
-    return render_template('korea_advise.html')
+    popular_dict = db.get_popular_list_month(8)
+    popular_dict_year = db.get_popular_list_year(2020)
+    # popular_dict = db.get_popular_list()
+    return render_template('korea_advise.html', popular_dict=popular_dict, month=8, popular_dict_year=popular_dict_year, year=2020)
 
 
 # 서버실행

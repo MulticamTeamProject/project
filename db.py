@@ -8,7 +8,7 @@ import json
 # 4) 테이블 => 리스트로 저장 
 # 5) 테이블 => 딕셔너리 리스트로 저장
 
-# app에서 import 위해 함수로 빼기
+# 각 테이블의 전체 리스트 가져오는 함수
 def get_tourpoint_list():
     # 커서 생성
     conn = get_connection()
@@ -36,13 +36,14 @@ def get_tourpoint_list():
 
 # 데이터 베이스에 접속하는 함수
 def get_connection() :
-    conn = pymysql.connect(host='127.0.0.1', user='multi',
-            password='multi', db='tourpointdb'
+    conn = pymysql.connect(host='70.12.227.62', user='user2',
+            password='multicampus1111', db='koreatourpointdb'
             , charset='utf8')
     if conn:
         print('f 디비 접속 완료')
     return conn
 
+# 특정 월/년도 인기있는 관광지 가져오는 함수
 def get_popular_list():
     # 커서 생성
     conn = get_connection()
@@ -70,6 +71,7 @@ def get_popular_list():
     conn.close()
     return temp_list
 
+# 최근 5년치 각 월별로 인기있는 관광지 가져오는 함수
 def get_popular_list_month(month):
     # 커서 생성
     conn = get_connection()
@@ -97,13 +99,52 @@ def get_popular_list_month(month):
     conn.close()
     return temp_list
 
+# 최근 5년치 각 지역별+월별로 인기있는 관광지 가져오는 함수
+def get_popular_list_month_loc(month, loc):
+    # 커서 생성
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    locDict = {1:'seoultbl', 2:'gangwontbl', 3:'gyeonggitbl', 4:'gyeongnamtbl', 5:'gyeongbuktbl',
+                 6:'gwangjutbl', 7:'daegutbl', 8:'daejeontbl', 9:'busantbl', 10:'sejongtbl', 
+                 11:'ulsantbl', 12:'incheontbl', 13:'jeonnamtbl', 14:'jeonbuktbl', 15:'jejutbl', 16:'chungnamtbl', 17:'chungbuktbl'}
+    
+    # sql = '''with abc(gungu, name, korean, foreigner)
+    #     as (select GUNGU, name, sum(korean) as korean, sum(foreigner) as foreigner from %s where month = %s group by name)
+    #     select gungu, name, korean, foreigner, korean+foreigner as total from abc order by total desc limit 5; '''
+    sql = 'with abc(gungu, name, korean, foreigner) as (select GUNGU, name, sum(korean) as korean, sum(foreigner) as foreigner from ' + locDict[loc]+' where month = %s group by name) select gungu, name, korean, foreigner, korean+foreigner as total from abc order by total desc limit 5'
+
+    # cursor.execute(sql, (location, month))
+    cursor.execute(sql, month)
+    result = cursor.fetchall()
+
+    temp_list = []
+    for row in result:
+        temp_dic = {}
+        temp_dic['gungu'] = row[0]
+        temp_dic['name'] = row[1]
+        temp_dic['korean'] = int(row[2])
+        temp_dic['foreigner'] = int(row[3])
+        temp_dic['total'] = int(row[4])
+        # temp_dic1 = {i: temp_dic}
+        # temp_list.append(temp_dic1)
+        temp_list.append(temp_dic)
+    
+    # 접속 종료
+    conn.close()
+    city = {1:'서울', 2:'강원', 3:'경기', 4:'경남', 5:'경북',
+                 6:'광주', 7:'대구', 8:'대전', 9:'부산', 10:'세종', 
+                 11:'울산', 12:'인천', 13:'전남', 14:'전북', 15:'제주', 16:'충남', 17:'충북'}
+    return temp_list, city[loc]
+
+# 최근 5년치 각 연도별로 인기있는 관광지 가져오는 함수
 def get_popular_list_year(year):
     # 커서 생성
     conn = get_connection()
     cursor = conn.cursor()
 
     sql = '''with abc(gungu, name, korean, foreigner)
-        as (select GUNGU, name, sum(korean) as korean, sum(foreigner) as foreigner from seoultbl where year = %s group by name)
+        as (select GUNGU, name, sum(korean) as korean, sum(foreigner) as foreigner from gangwontbl where year = %s group by name)
         select gungu, name, korean, foreigner, korean+foreigner as total from abc order by total desc limit 5; '''
     cursor.execute(sql, year)
     result = cursor.fetchall()
@@ -275,6 +316,9 @@ if __name__ == "__main__":
     # print(st_json)
 
     temp_list = get_popular_list_year(2020)
+    print(temp_list)
+
+    temp_list = get_popular_list_month_loc(1, 2)
     print(temp_list)
 
 

@@ -29,6 +29,9 @@ def month_1():
 def month_2():
     return render_template('month_2.html')
 
+@app.route('/advise_korea') # 국내여행지추천
+def advise_korea():
+    return render_template('korea_advise.html')
 
 
 # 서버실행

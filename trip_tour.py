@@ -1,4 +1,4 @@
-# 지역별 구글맵 데이터 가져오기(미완성)
+# 지역별 구글맵 데이터 가져오기
 from selenium import webdriver
 from itertools import count
 import time

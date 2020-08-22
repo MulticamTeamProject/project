@@ -31,8 +31,7 @@ for loc in location:
     # 경로 선언
     img_path = base_dir_img + '/' + str(nation) + '/' + str(loc)  # base_dir_img + 나라이름 + 지역이름
     if os.path.exists(img_path):
-        shutil.rmtree(img_path)
-        os.makedirs(img_path)
+        pass
     else:
         os.makedirs(img_path)
 
@@ -47,7 +46,7 @@ for loc in location:
 
     for _ in range(0,3):
         
-        for i in range(1,10,2): # 40까지 해야 20개 추출함, test로 10개만 해봄
+        for i in range(1,40,2): # 40까지 해야 20개 추출함
 
             # 페이지별 항목들에 대한 접근
             xpath = '//*[@id="pane"]/div/div[1]/div/div/div[2]/div[1]/div[' + str(i) + ']' # 요소별 클릭 주소
@@ -76,7 +75,7 @@ for loc in location:
                     if (len(temp) == 4) | (len(temp) == 3):
                         r_data.append(temp[1])
                     else:
-                        r_data.append(temp)
+                        r_data.append(temp[0])
                         
             # 데이터가 없는 경우에 대한 전처리
             if len(r_data) ==1:

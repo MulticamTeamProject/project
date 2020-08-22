@@ -11,30 +11,32 @@ import shutil, os
 base_dir_img = './data_set/해외관광지사진'
 base_dir_csv = './data_set/해외관광지자료'
 
-location = ['홍콩'] # 지역이름
+nation = '중국' # 나라이름
+location = ['홍콩', '베이징'] # 나라 안에 포함된 지역이름
 final_result = [] # 최종 데이터 저장변수
 
-for na in location:
-    
-    # csv 자료를 담아놓을 폴더 만들기(이미 만든것이 있다면 지우고 폴더 만들기, 없다면 만들기)
-    # 경로 선언
-    csv_path = base_dir_csv + '/' + str(na)  # base_dir_img + 지역이름
-    if os.path.exists(csv_path):
-        shutil.rmtree(csv_path)
-        os.makedirs(csv_path)
-    else:
-        os.makedirs(csv_path)
+# csv 자료를 담아놓을 폴더 만들기(이미 만든것이 있다면 넘어가고 없다면 만들기)
+# 경로 선언
+csv_path = base_dir_csv + '/' + str(nation)  # base_dir_csv + 나라이름
+if os.path.exists(csv_path):
+    #shutil.rmtree(csv_path)  
+    #os.makedirs(csv_path)
+    pass
+else:
+    os.makedirs(csv_path)
+
+for loc in location:
     
     # 사진을 담아놓을 폴더 만들기(이미 만든것이 있다면 지우고 폴더 만들기, 없다면 만들기)
     # 경로 선언
-    img_path = base_dir_img + '/' + str(na)  # base_dir_img + 지역이름
+    img_path = base_dir_img + '/' + str(nation) + '/' + str(loc)  # base_dir_img + 나라이름 + 지역이름
     if os.path.exists(img_path):
         shutil.rmtree(img_path)
         os.makedirs(img_path)
     else:
         os.makedirs(img_path)
 
-    target = str(na) + ' 관광명소'
+    target = str(loc) + ' 관광명소'
     url = 'https://www.google.com/maps/?hl=ko'
     driver = webdriver.Chrome(executable_path="./chromedriver.exe")
     driver.get(url) # 드라이버로 열기
@@ -45,7 +47,7 @@ for na in location:
 
     for _ in range(0,3):
         
-        for i in range(1,2,2): # 40까지 해야 20개 추출함
+        for i in range(1,10,2): # 40까지 해야 20개 추출함, test로 10개만 해봄
 
             # 페이지별 항목들에 대한 접근
             xpath = '//*[@id="pane"]/div/div[1]/div/div/div[2]/div[1]/div[' + str(i) + ']' # 요소별 클릭 주소
@@ -72,7 +74,7 @@ for na in location:
                     temp = list(data.strings)
                     #print(temp)
                     if (len(temp) == 4) | (len(temp) == 3):
-                        r_data.append([temp[1]])
+                        r_data.append(temp[1])
                     else:
                         r_data.append(temp)
                         
@@ -91,7 +93,7 @@ for na in location:
             imgUrl = img_data.find('img').get('src')
             if imgUrl[:2] =='//':
                 imgUrl = 'https:' + imgUrl
-            urllib.request.urlretrieve(imgUrl, img_path + '/' + str(r_data[0][0]) +'.jpg')    # 폴더에 사진 저장
+            urllib.request.urlretrieve(imgUrl, img_path + '/' + str(r_data[0]) +'.jpg')    # 폴더에 사진 저장
     
             driver.find_element_by_xpath('//*[@id="pane"]/div/div[1]/div/div/button').click() # 뒤로가기
             time.sleep(5)
@@ -106,4 +108,4 @@ for na in location:
     driver.close()      # 브라우저 종료
 
     df = pd.DataFrame(final_result,columns=['Name','Score','Description'])
-    df.to_csv(csv_path+'.csv', encoding='utf-8')
+    df.to_csv(csv_path + '/' + str(loc) + '.csv', encoding='utf-8')

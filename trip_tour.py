@@ -12,7 +12,7 @@ base_dir_img = './data_set/해외관광지사진'
 base_dir_csv = './data_set/해외관광지자료'
 
 nation = '중국' # 나라이름
-location = ['홍콩', '베이징'] # 나라 안에 포함된 지역이름
+location = ['마카오'] # 나라 안에 포함된 지역이름
 final_result = [] # 최종 데이터 저장변수
 
 # csv 자료를 담아놓을 폴더 만들기(이미 만든것이 있다면 넘어가고 없다면 만들기)
@@ -84,15 +84,17 @@ for loc in location:
                 r_data.append('-')
                 
             final_result.append(r_data) # 마지막에 정돈된 하나의 행 데이터를 결과에 추가
-            
-            # 이미지 저장하기
-            # 사진이 담겨있는 태그데이터를 긁어오기
-            img_data = datas.find('div', {'class':'section-hero-header-image-hero-container collapsible-hero-image'})
-            # 태그데이터 안의 src 경로 얻어오기
-            imgUrl = img_data.find('img').get('src')
-            if imgUrl[:2] =='//':
-                imgUrl = 'https:' + imgUrl
-            urllib.request.urlretrieve(imgUrl, img_path + '/' + str(r_data[0]) +'.jpg')    # 폴더에 사진 저장
+            try:   
+                # 이미지 저장하기
+                # 사진이 담겨있는 태그데이터를 긁어오기
+                img_data = datas.find('div', {'class':'section-hero-header-image-hero-container collapsible-hero-image'})
+                # 태그데이터 안의 src 경로 얻어오기
+                imgUrl = img_data.find('img').get('src')
+                if imgUrl[:2] =='//':
+                    imgUrl = 'https:' + imgUrl
+                urllib.request.urlretrieve(imgUrl, img_path + '/' + str(r_data[0]) +'.jpg')    # 폴더에 사진 저장
+            except:
+                pass
     
             driver.find_element_by_xpath('//*[@id="pane"]/div/div[1]/div/div/button').click() # 뒤로가기
             time.sleep(5)

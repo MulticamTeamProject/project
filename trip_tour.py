@@ -11,9 +11,9 @@ import shutil, os
 base_dir_img = './data_set/해외관광지사진'
 base_dir_csv = './data_set/해외관광지자료'
 
-nation = '중국' # 나라이름
-location = ['광둥'] # 나라 안에 포함된 지역이름
-final_result = [] # 최종 데이터 저장변수
+nation = '스페인' # 나라이름
+location = ['바야돌리드'] # 나라 안에 포함된 지역이름
+# final_result = [] # 최종 데이터 저장변수
 
 # csv 자료를 담아놓을 폴더 만들기(이미 만든것이 있다면 넘어가고 없다면 만들기)
 # 경로 선언
@@ -26,7 +26,7 @@ else:
     os.makedirs(csv_path)
 
 for loc in location:
-    
+    final_result = [] # 최종 데이터 저장변수
     # 사진을 담아놓을 폴더 만들기(이미 만든것이 있다면 지우고 폴더 만들기, 없다면 만들기)
     # 경로 선언
     img_path = base_dir_img + '/' + str(nation) + '/' + str(loc)  # base_dir_img + 나라이름 + 지역이름
@@ -44,15 +44,15 @@ for loc in location:
     driver.find_element_by_xpath('//*[@id="searchbox-searchbutton"]').click() # 검색클릭
     time.sleep(4)
 
-    for _ in range(0,3):
+    for _ in range(0,1):
         
-        for i in range(1,40,2): # 40까지 해야 20개 추출함
+        for i in range(3,42,2): # 40까지 해야 20개 추출함
 
             # 페이지별 항목들에 대한 접근
             xpath = '//*[@id="pane"]/div/div[1]/div/div/div[2]/div[1]/div[' + str(i) + ']' # 요소별 클릭 주소
             driver.find_element_by_xpath(xpath).click()                                 # 요소클릭
             time.sleep(4)
-    
+
             # 항목에 대한 정보 받아오기
             rcv_data = driver.page_source                       # 검색한 웹페이지 소스코드 긁어오기
             soupData = BeautifulSoup(rcv_data, 'html.parser')   # html이라는 부분 데이터를 가져옴
@@ -109,4 +109,4 @@ for loc in location:
     driver.close()      # 브라우저 종료
 
     df = pd.DataFrame(final_result,columns=['Name','Score','Description'])
-    df.to_csv(csv_path + '/' + str(loc) + '.csv', encoding='utf-8')
+    df.to_csv(csv_path + '/' + str(loc) + '.csv', encoding='utf8')

@@ -27,13 +27,13 @@ def overseas_month(no1):
     popular_dict = db.get_popular_list_month_loc_fo(no1)
     return render_template('overseas+month.html', popular_dict=popular_dict, month=no1)
 
-@app.route('/month_1') # 1월테스트
-def month_1():
-    return render_template('month_1.html')
+# @app.route('/month_1') # 1월테스트
+# def month_1():
+#     return render_template('month_1.html')
 
-@app.route('/month_2') # 2월테스트
-def month_2():
-    return render_template('month_2.html')
+# @app.route('/month_2') # 2월테스트
+# def month_2():
+#     return render_template('month_2.html')
 
 @app.route('/test') # 테스트화면 임시
 def test():

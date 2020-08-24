@@ -22,12 +22,14 @@ target_class = [                           # 찾고자하는 데이터의 태그
     {'class':"section-editorial-quote"},
 ]
 
+driver = webdriver.Chrome(executable_path="./chromedriver.exe")
+time.sleep(2)
 for data in target_data.index:
     hint = target_data.iloc[data,0][:2]
     name = target_data.iloc[data][2]
+
     # 네이버 열기
     url = 'https://www.google.co.kr/maps/search/' + name
-    driver = webdriver.Chrome(executable_path="./chromedriver.exe")
     driver.get(url) 
     time.sleep(4)
     
@@ -76,10 +78,10 @@ for data in target_data.index:
         imgUrl = img_data.find('img').get('src')
         if imgUrl[:2] =='//':
             imgUrl = 'https:' + imgUrl
-        urllib.request.urlretrieve(imgUrl, img_path + '/' + str(r_data[0][0]) +'.jpg')    # 폴더에 사진 저장
-        driver.close()
+        urllib.request.urlretrieve(imgUrl, img_path + '/' + str(r_data[0]) +'.jpg')    # 폴더에 사진 저장
     except:
-        driver.close()
-    
+        pass
+driver.close()
 df = pd.DataFrame(final_result,columns=['Name','Score','Description'])
 df.to_csv(csv_path+'.csv', encoding='utf-8')
+

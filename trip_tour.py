@@ -11,8 +11,8 @@ import shutil, os
 base_dir_img = './data_set/해외관광지사진'
 base_dir_csv = './data_set/해외관광지자료'
 
-nation = '세이쉘' # 나라이름
-location = ['세이셸'] # 나라 안에 포함된 지역이름 지역o
+nation = '피지' # 나라이름
+location = ['피지'] # 나라 안에 포함된 지역이름 지역o
 final_result = [] # 최종 데이터 저장변수
 
 # csv 자료를 담아놓을 폴더 만들기(이미 만든것이 있다면 넘어가고 없다면 만들기)
@@ -47,16 +47,18 @@ for loc in location: #지역o
     driver.find_element_by_xpath('//*[@id="searchbox-searchbutton"]').click() # 검색클릭
     time.sleep(4)
 
-    num = 1
+    num = 2
     for j in range(num):
     # for _ in range(1):
         if(j!=num-1):
             for i in range(1,40,2): # 40까지 해야 20개 추출함
 
                 # 페이지별 항목들에 대한 접근
-                xpath = '//*[@id="pane"]/div/div[1]/div/div/div[2]/div[1]/div[' + str(i) + ']' # 요소별 클릭 주소
+                # xpath = '//*[@id="pane"]/div/div[1]/div/div/div[2]/div[1]/div[' + str(i+2) + ']' # 요소별 클릭 주소
+                # 평점
+                xpath = '//*[@id="pane"]/div/div[1]/div/div/div[4]/div[1]/div['+str(i)+']'
                 driver.find_element_by_xpath(xpath).click()                                 # 요소클릭
-                time.sleep(4)
+                time.sleep(3)
         
                 # 항목에 대한 정보 받아오기
                 rcv_data = driver.page_source                       # 검색한 웹페이지 소스코드 긁어오기
@@ -102,12 +104,12 @@ for loc in location: #지역o
                     pass
         
                 driver.find_element_by_xpath('//*[@id="pane"]/div/div[1]/div/div/button').click() # 뒤로가기
-                time.sleep(5)
+                time.sleep(3)
         
             try:
                 # 페이지 하나 넘어가기
                 driver.find_element_by_xpath('//*[@id="n7lv7yjyC35__section-pagination-button-next"]/span').click()
-                time.sleep(5)
+                time.sleep(3)
             except:
                 pass
 
@@ -116,15 +118,14 @@ for loc in location: #지역o
         for i in range(1,40,2): # 40까지 해야 20개 추출함
 
             # 페이지별 항목들에 대한 접근
-            # xpath = '//*[@id="pane"]/div/div[1]/div/div/div[2]/div[1]/div[' + str(i) + ']' # 요소별 클릭 주소
+            # xpath = '//*[@id="pane"]/div/div[1]/div/div/div[2]/div[1]/div[' + str(i+2) + ']' # 요소별 클릭 주소
             # 평점이 뜨는 경우
             xpath = '//*[@id="pane"]/div/div[1]/div/div/div[4]/div[1]/div['+str(i)+']'
             try:
                 driver.find_element_by_xpath(xpath).click()                                 # 요소클릭
             except:
                 continue
-            time.sleep(4)
-
+            time.sleep(3)
             # 항목에 대한 정보 받아오기
             rcv_data = driver.page_source                       # 검색한 웹페이지 소스코드 긁어오기
             soupData = BeautifulSoup(rcv_data, 'html.parser')   # html이라는 부분 데이터를 가져옴
@@ -169,7 +170,7 @@ for loc in location: #지역o
                 pass
 
             driver.find_element_by_xpath('//*[@id="pane"]/div/div[1]/div/div/button').click() # 뒤로가기
-            time.sleep(5)
+            time.sleep(3)
         
 
     driver.close()      # 브라우저 종료

@@ -12,7 +12,7 @@ base_dir_img = './data_set/해외관광지사진'
 base_dir_csv = './data_set/해외관광지자료'
 
 nation = '일본' # 나라이름
-location = ['도쿄', '교토']#, '오사카', '요코하마'] # 나라 안에 포함된 지역이름
+location = ['오사카', '요코하마'] # 나라 안에 포함된 지역이름
 
 # csv 자료를 담아놓을 폴더 만들기(이미 만든것이 있다면 넘어가고 없다면 만들기)
 # 경로 선언
@@ -107,4 +107,4 @@ for loc in location:
     driver.close()      # 브라우저 종료
 
     df = pd.DataFrame(final_result,columns=['Name','Score','Description'])
-    df.to_csv(csv_path + '/' + str(loc) + '.csv', encoding='utf-8')
+    df.to_csv(csv_path + '/' + str(loc) + '.csv', encoding='utf8')

@@ -24,9 +24,18 @@ target_class = [                           # 찾고자하는 데이터의 태그
 
 driver = webdriver.Chrome(executable_path="./chromedriver.exe")
 time.sleep(2)
+
+pivot = target_data.iloc[0,0][:2]
+
 for data in target_data.index:
     hint = target_data.iloc[data,0][:2]
     name = target_data.iloc[data][2]
+
+    if pivot != hint:
+        df = pd.DataFrame(final_result,columns=['Name','Score','Description'])
+        df.to_csv(csv_path+pivot+'.csv', encoding='utf-8')
+        pivot = hint
+        final_result.clear()
 
     # 네이버 열기
     url = 'https://www.google.co.kr/maps/search/' + name
@@ -82,6 +91,3 @@ for data in target_data.index:
     except:
         pass
 driver.close()
-df = pd.DataFrame(final_result,columns=['Name','Score','Description'])
-df.to_csv(csv_path+'.csv', encoding='utf-8')
-

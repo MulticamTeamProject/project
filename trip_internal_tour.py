@@ -59,9 +59,9 @@ for data in target_data.index:
                 temp = list(data.strings)
                 #print(temp)
                 if (len(temp) == 4) | (len(temp) == 3):
-                    r_data.append([temp[1]])
+                    r_data.append(temp[1])
                 else:
-                    r_data.append(temp)
+                    r_data.append(temp[0])
                             
         # 데이터가 없는 경우에 대한 전처리
         if len(r_data) ==1:

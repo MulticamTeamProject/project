@@ -12,7 +12,7 @@ base_dir_img = './data_set/해외관광지사진'
 base_dir_csv = './data_set/해외관광지자료'
 
 nation = '중국' # 나라이름
-location = ['마카오'] # 나라 안에 포함된 지역이름
+location = ['광둥'] # 나라 안에 포함된 지역이름
 final_result = [] # 최종 데이터 저장변수
 
 # csv 자료를 담아놓을 폴더 만들기(이미 만든것이 있다면 넘어가고 없다면 만들기)

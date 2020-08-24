@@ -7,7 +7,7 @@ import pandas as pd
 import urllib.request
 import shutil, os
 
-target_data = pd.read_csv('./temp/international_data.csv', engine='python')
+target_data = pd.read_csv('./data_set/international_data2.csv', engine='python')
 
 #나중에 지역별 사진폴더를 만들 기본 주소(개별 pc에서 돌리려면 폴더 주소 지정하셔야 합니다. 그리고 파일명 구분은 /로 다 바꾸셔야 함)
 base_dir_img = 'C:/Users/gypig/OneDrive/문서/project/관광지사진/국내'
@@ -31,12 +31,6 @@ for data in target_data.index:
     hint = target_data.iloc[data,0][:2]
     name = target_data.iloc[data][2]
 
-    if pivot != hint:
-        df = pd.DataFrame(final_result,columns=['Name','Score','Description'])
-        df.to_csv(csv_path+pivot+'.csv', encoding='utf-8')
-        pivot = hint
-        final_result.clear()
-
     # 네이버 열기
     url = 'https://www.google.co.kr/maps/search/' + name
     driver.get(url) 
@@ -49,6 +43,12 @@ for data in target_data.index:
         pass
     else:
         os.makedirs(csv_path)
+
+    if pivot != hint:
+        df = pd.DataFrame(final_result,columns=['Name','Score','Description'])
+        df.to_csv(csv_path+'/'+pivot+'.csv', encoding='utf-8')
+        pivot = hint
+        final_result.clear()
     
     # 사진을 담아놓을 폴더 만들기(이미 만든것이 있다면 지우고 폴더 만들기, 없다면 만들기)
     # 경로 선언

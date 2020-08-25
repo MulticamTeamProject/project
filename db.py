@@ -130,6 +130,30 @@ def get_popular_list_month(month):
         temp_dic['korean'] = int(row[1])
         temp_dic['foreigner'] = int(row[2])
         temp_list.append(temp_dic)
+        
+    # 접속 종료
+    conn.close()
+    return temp_list
+  
+# (지금 새로한것)각 지역별로 인기있는 관광지 가져오는 함수
+def get_popular_list_nation(name):
+    # 커서 생성
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    name = name + 'tbl'
+
+    sql = 'select name, sum(korean) as korean, sum(foreigner) as foreigner from '+ name + ' group by name order by korean+foreigner desc limit 5;'
+    cursor.execute(sql)
+    result = cursor.fetchall()
+
+    temp_list = []
+    for row in result:
+        temp_dic = {}
+        temp_dic['name'] = row[0]
+        temp_dic['korean'] = int(row[1])
+        temp_dic['foreigner'] = int(row[2])
+        temp_list.append(temp_dic)
 
     # 접속 종료
     conn.close()

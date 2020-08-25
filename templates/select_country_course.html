@@ -39,9 +39,8 @@
   <!--첫 시작 페이지-->
   <!--이전에 상속받은 layout.html이 날아옴-->
   {% extends 'layout.html' %}
-  <!--이미지 carousel 슬라이드-->
   {% block pageTitle %}
-  <h1 class="text-center" style="margin-top: 50px; margin-bottom: 20px;"><span style="color: red;"></span>나라 선택</h1>
+  <h1 class="text-center" style="margin-top: 50px; margin-bottom: 20px;"><span style="color: red;"></span>각 나라별 코스</h1>
   <hr>
   <script>
     function setCategory2(){
@@ -106,7 +105,7 @@
     <div class="text-center">
     <form name="search">
     <select id="category1" onchange="setCategory2()" class="btn btn-light dropdown-toggle">
-    <option value="">선택하세요</option>
+    <option value="">대륙 선택</option>
     <option value="asiadb">아시아</option>
     <option value="europedb">유럽</option>
     <option value="americadb">아메리카</option>
@@ -114,7 +113,7 @@
     <option value="aflicadb">아프리카</option>
     </select>
     <select id="category2" class="btn btn-light dropdown-toggle">
-    <option value="">선택하세요</option>
+    <option value="">나라 선택</option>
     </select>
     <input type = "button" class="btn btn-light"
       value = "선택"

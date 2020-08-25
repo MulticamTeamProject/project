@@ -39,7 +39,6 @@
   <!--첫 시작 페이지-->
   <!--이전에 상속받은 layout.html이 날아옴-->
   {% extends 'layout.html' %}
-  <!--이미지 carousel 슬라이드-->
   {% block pageTitle %}
   <h1 class="text-center" style="margin-top: 50px; margin-bottom: 20px;"><span style="color: red;">{{course_dict[0]['nation']}}</span> Course</h1>
   <hr>
@@ -67,7 +66,6 @@
       </tr>
       {% endfor %}
   </table>
-  <!-- {{squat_list}} -->
   <p class="text-center"><a href="/" class="btn btn-outline-primary">메인 화면으로 이동</a></p>
   {% endblock %} 
 </body>

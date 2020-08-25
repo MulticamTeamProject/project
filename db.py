@@ -266,6 +266,7 @@ def get_city_list(country):
     
     return temp_list
 
+# 코스추천에서 넘어온 값으로 나라 선택해서 뿌리기
 def get_course_select(continent, country):
     conn = get_connection_fo()
     cursor = conn.cursor()

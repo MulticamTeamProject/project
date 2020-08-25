@@ -76,10 +76,12 @@ def overseas_course(country):
     city_list = db.get_city_list(city_db[country])
     return render_template('country_course.html', course_dict = course_dict, totalCount = len(course_dict), city_list = city_list)
 
+# 해외 코스 화면에서 나라선택
 @app.route('/select_country_course')
 def country_course():
     return render_template('select_country_course.html')
 
+# 선택된 나라 뿌리기
 @app.route('/select_country_course<continent>+<country>')
 def select_country_course(continent, country):
     course_dict = db.get_course_select(continent, country)

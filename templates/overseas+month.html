@@ -98,7 +98,17 @@
                         labels: label_array
                     };
                     // 가운데 구멍이 없는 파이형 차트 
-                    var ctx1 = document.getElementById("myChart1"); var myMonthChart = new Chart(ctx1, { type: 'doughnut', data: data, options: {} });
+                    var ctx1 = document.getElementById("myChart1"); var myMonthChart = new Chart(ctx1, { type: 'doughnut', data: data, options: {}});
+                    // var ctx1 = document.getElementById("myChart1"); var myMonthChart = new Chart(ctx1, { type: 'doughnut', data: data, options: {
+                    //     tooltips: {
+                    //         // Disable the on-canvas tooltip
+                    //         enabled: false,
+
+                    //         custom: function(tooltipModel) {
+                    //             // location.href ="korea_month_"+month+"+loc_"+loc;
+                    //             location.href ="/overseas_1";
+                    //             }
+                    //                 } }});
                 </script>
             </td>
             <td>
@@ -106,13 +116,13 @@
                 <div class="container">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link pink" href="/test" target="_blank">■ {{popular_dict[0]['country']}}</a>
+                            <a class="nav-link pink" href="/overseas_course{{popular_dict[0]['country']}}" target="_blank">■ {{popular_dict[0]['country']}}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link green" href="/test" target="_blank">■ {{popular_dict[1]['country']}}</a>
+                            <a class="nav-link green" href="/overseas_course{{popular_dict[1]['country']}}" target="_blank">■ {{popular_dict[1]['country']}}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link blue" href="/test" target="_blank">■ {{popular_dict[2]['country']}}</a>
+                            <a class="nav-link blue" href="/overseas_course{{popular_dict[2]['country']}}" target="_blank">■ {{popular_dict[2]['country']}}</a>
                         </li>
                     </ul>
                 </div>

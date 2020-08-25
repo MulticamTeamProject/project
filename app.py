@@ -3,6 +3,8 @@ from flask import Flask, render_template, request
 import db
 import datetime
 
+city_db = {'일본':'japan_tbl', '중국':'china_tbl'}
+
 # flask 객체 생성
 app = Flask(__name__)
 
@@ -66,6 +68,19 @@ def advise_korea():
 def month_loc(no1):
     popular_dict = db.get_popular_list_month(no1)
     return render_template('korea_month+loc.html', popular_dict=popular_dict, month=no1)
+
+@app.route('/country_course')
+def country_course():
+    course_dict = db.get_course(1)
+    city_list = db.get_city_list(1)
+    return render_template('country_course.html', course_dict = course_dict, totalCount = len(course_dict), city_list = city_list)
+
+@app.route('/overseas_course<country>')
+def overseas_course(country):
+    course_dict = db.get_course(city_db[country])
+    city_list = db.get_city_list(city_db[country])
+    return render_template('country_course.html', course_dict = course_dict, totalCount = len(course_dict), city_list = city_list)
+
 
 
 # 서버실행

@@ -222,10 +222,89 @@ def get_popular_list_month_loc_fo(month):
     
     return temp_list
 
+def get_course(country):
+    conn = get_connection_fo()
+    cursor = conn.cursor()
+    sql = 'use asiadb'
+    cursor.execute(sql)
+
+    sql = 'select * from ' + country
+    cursor.execute(sql)
+    result = cursor.fetchall()
+
+    temp_list = []
+    for row in result:
+        temp_dic = {}
+        temp_dic['nation'] = row[2]
+        temp_dic['city'] = row[3]
+        temp_dic['name'] = row[4]
+        temp_dic['score'] = row[5]
+        temp_dic['description'] = row[6]
+        temp_list.append(temp_dic)
+    
+    # 접속 종료
+    conn.close()
+    
+    return temp_list
+
+def get_city_list(country):
+    conn = get_connection_fo()
+    cursor = conn.cursor()
+    sql = 'use asiadb'
+    cursor.execute(sql)
+
+    sql = 'select distinct city from ' + country
+    cursor.execute(sql)
+    result = cursor.fetchall()
+
+    temp_list = []
+    for row in result:
+        temp_list.append(row[0])
+    
+    # 접속 종료
+    conn.close()
+    
+    return temp_list
+
+
+
+if __name__ == "__main__":
+    # # temp_list = get_tourpoint_list()
+    # temp_list = get_popular_list()
+    # print(temp_list)
+
+    # # st_json = json.dumps(temp_list[0], indent=4)
+    # # print(st_json)
+
+    # temp_list = get_popular_list_year(2020)
+    # print(temp_list)
+
+    # temp_list = get_popular_list_month_loc(1, 1)
+    # print(temp_list)
+
+    # today = datetime.date.today()
+    # print(today.year-1, today.month)
+
+    # temp_list = get_popular_list_month_loc_fo(2)
+    # print(temp_list)
+    # temp_list = get_popular_list_month(1)
+    # print(temp_list)
+
+    # temp_list = get_course(1)
+    # print(temp_list)
+    print(get_city_list('japan_tbl'))
 
 
 
 
+
+
+
+    # print(country(10))
+    # print(search_country_list('kor'))
+    # # country_add('FIN', 'Finland', 121914.00, 1376)
+    # # country_delete(35)
+    # country_update(37, 90000, 90000)
 
 
 # # no으로 나라별 레코드 변환함수
@@ -363,36 +442,3 @@ def get_popular_list_month_loc_fo(month):
 #     cursor.execute(sql, (c_gnp, c_population, c_no))
 #     conn.commit()
 #     conn.close()
-
-if __name__ == "__main__":
-    # # temp_list = get_tourpoint_list()
-    # temp_list = get_popular_list()
-    # print(temp_list)
-
-    # # st_json = json.dumps(temp_list[0], indent=4)
-    # # print(st_json)
-
-    # temp_list = get_popular_list_year(2020)
-    # print(temp_list)
-
-    # temp_list = get_popular_list_month_loc(1, 1)
-    # print(temp_list)
-
-    # today = datetime.date.today()
-    # print(today.year-1, today.month)
-
-    # temp_list = get_popular_list_month_loc_fo(2)
-    # print(temp_list)
-    temp_list = get_popular_list_month(1)
-    print(temp_list)
-
-
-
-
-
-
-    # print(country(10))
-    # print(search_country_list('kor'))
-    # # country_add('FIN', 'Finland', 121914.00, 1376)
-    # # country_delete(35)
-    # country_update(37, 90000, 90000)

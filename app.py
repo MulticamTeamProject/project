@@ -3,7 +3,7 @@ from flask import Flask, render_template, request
 import db
 import datetime
 
-city_db = {'일본':'japan_tbl', '중국':'china_tbl'}
+city_db = {'일본':'japan_tbl', '중국':'china_tbl', '베트남':'vietnam_tbl', '미국':'usa_tbl'}
 
 # flask 객체 생성
 app = Flask(__name__)
@@ -79,9 +79,18 @@ def nation_loc(name):
 # 해외 top3 화면에서 해당하는 페이지 보이기
 @app.route('/overseas_course<country>')
 def overseas_course(country):
-    course_dict = db.get_course(city_db[country])
-    city_list = db.get_city_list(city_db[country])
-    return render_template('country_course.html', course_dict = course_dict, totalCount = len(course_dict), city_list = city_list)
+    if(country == '미국'):
+        course_dict = db.get_course_select('americadb', city_db[country])
+        city_list = db.get_city_list_select('americadb', city_db[country])
+    else:
+        course_dict = db.get_course_select('asiadb', city_db[country])
+        city_list = db.get_city_list_select('asiadb', city_db[country])
+    path = []
+    for x in course_dict:
+        p = 'images/external_img/' + x['name'] + '.jpg'
+        print(p)
+        path.append(p)
+    return render_template('country_course.html', course_dict = course_dict, totalCount = len(course_dict), city_list = city_list, path = path)
 
 # 해외 코스 화면에서 나라선택
 @app.route('/select_country_course')

@@ -20,19 +20,37 @@
      integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous"> 
 </head>
 <style>
-  @font-face {
+  @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Noto+Sans+KR:wght@500&display=swap');
+  /* @font-face {
     font-family:'BlackHanSans';
-    src: url('/static/fonts/BlackHanSans-Regular.ttf'); /*폰트지정*/
-  }
-  .m-trip-sketch__inner{
+    src: url('/static/fonts/BlackHanSans-Regular.ttf'); 
+  } */
+  /* .m-trip-sketch__inner{
     display:flex;
-    font-size:40px;
-    font-family: 'BlackHanSans';;
+    font-size:35px;
+    font-family: 'Noto Sans KR', sans-serif;
   }
   .c-sketch-text-v2__text{
     flex:2;
     margin-right: 70px;
     font-size:20px;
+  } */
+  .box{
+    display:inline-block;
+    width: 33%;
+    /* font-family: 'Noto Sans KR', sans-serif; */
+    /* background-color: blue; */
+    /* text-align: center; */
+  }
+  .box1{
+    font-family: 'Do Hyeon', sans-serif;
+    font-size: 35px;
+    text-align: center;
+  }
+  .box2{
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 20px;
+    text-align: center;
   }
 </style>
 <body>
@@ -52,7 +70,7 @@
     </ul>
 
     <!-- The slideshow -->
-    <div class="carousel-inner" >
+    <br><div class="carousel-inner" style="text-align: center;" >
       <div class="carousel-item active">
         <img src="/static/images/summer.jpg" alt="summer" width="700px" height="400px">
       </div>
@@ -76,7 +94,7 @@
     </a>
   </div>
   <!--이미지 밑에 설명-->
-  <div class="home-wrapper">
+  <!-- <div class="home-wrapper">
     <div class="home-wrapper-inner">
       <div class="m-trip-sketch">
         <div class="m-trip-sketch__inner">
@@ -115,7 +133,28 @@
         </div>
       </div>
     </div> 
-  </div> 
+  </div>  -->
+
+
+    <br>
+    <div class="box">
+      <i class='fas fa-thumbtack' style='font-size:36px'></i>
+      <div class="box1">최근 5년간 분석</div>
+      <div class="box2">국내여행Top5와 증가율까지 보여줍니다</div>
+    </div>
+    <div class="box">
+      <i class='fas fa-thumbtack' style='font-size:36px'></i>
+      <div class="box1">해외인기 여행지</div>
+      <div class="box2">꼭 가봐야 할 여행지 필수코스 추천</div>
+    </div>
+    <div class="box">
+      <i class='fas fa-thumbtack' style='font-size:36px'></i>
+      <div class="box1">맛집,명소 다양한 추천</div>
+      <div class="box2">별점높은 로컬맛집까지 소개</div>
+    </div>
+    <br><br>
+  
+
   {% endblock %} 
 </body>
 </html>

@@ -42,7 +42,7 @@
   {% block pageTitle %}
   <h1 class="text-center" style="margin-top: 50px; margin-bottom: 20px;"><span style="color: red;">{{course_dict[0]['nation']}}</span> Course</h1>
   <hr>
-  <!-- 검색 폼 -->
+  <!-- city list 출력. 각 city 누르면 아래 리스트에서 해당 city로 감 -->
   <div class="text-center">
   {% for city in city_list %}
   <div id="#{{city}}" style="display: inline-block;"><a href="#{{city}}" class="btn btn-link">{{city}}</a></div>

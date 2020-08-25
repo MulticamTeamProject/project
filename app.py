@@ -69,6 +69,14 @@ def month_loc(no1):
     popular_dict = db.get_popular_list_month(no1)
     return render_template('korea_month+loc.html', popular_dict=popular_dict, month=no1)
 
+@app.route('/korea_nation_<name>')
+def nation_loc(name):
+    popular_dict = db.get_popular_list_nation(name)
+    return render_template('korea_nation.html', popular_dict=popular_dict, name=name)
+# 서버실행
+#app.run('127.0.0.1',5000,debug=True)
+
+
 # 해외 top3 화면에서 해당하는 페이지 보이기
 @app.route('/overseas_course<country>')
 def overseas_course(country):

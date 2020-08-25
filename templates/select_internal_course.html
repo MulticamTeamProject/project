@@ -23,7 +23,6 @@
   /* @font-face {
     font-family:'BlackHanSans';
     src: url('/static/fonts/BlackHanSans-Regular.ttf');
-  }
   .m-trip-sketch__inner{
     display:flex;
     font-size:40px;
@@ -34,44 +33,58 @@
     margin-right: 70px;
     font-size:20px;
   } */
+  /* @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@700&family=Noto+Sans+KR:wght@700&display=swap'); */
   @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Nanum+Gothic:wght@700&display=swap');
-  table{
-    font-family: 'Nanum Gothic', sans-serif;
-  }
-  h1{
+    
+  .title{
         font-size: 40px;
         text-align: center;
         /* font-family: 'Noto Sans KR', sans-serif; */
         font-family: 'Do Hyeon', sans-serif;
-        /* padding: 20px; */
+        padding: 20px;
     }
-
+  /* .btn{
+        font-family: 'Nanum Gothic', sans-serif;
+    } */
 </style>
 <body>
   <!--첫 시작 페이지-->
   <!--이전에 상속받은 layout.html이 날아옴-->
   {% extends 'layout.html' %}
   {% block pageTitle %}
-  <h1 class="text-center" style="margin-top: 50px; margin-bottom: 20px;"><span style="color: red;">{{loc_name}}</span> 주요 관광지</h1>
+  <h1 class="title"><span style="color: red;"></span>각 지역별 코스</h1>
   <hr>
-  <!-- <h2 class="text-center" style="margin: 30px;">여행지 수 : {{totalCount}}</h2> -->
-  <table cellpadding="10" cellspacing="0" align="center" class="table table-bordered table-hover" style="width: 80%;">
-      <tr class="table-primary text-center">
-          <th> </th>
-          <th>Name</th>
-          <th>Score</th>
-          <th>Description</th>
-      </tr>
-      {% for temp_dic in data %}
-      <tr class="text-center" id="{{temp_dic.city}}">
-          <td><img src="{{ url_for('static', filename=path[temp_dic.name])}}" alt="no image" width="400" height="300"></td>
-          <td>{{temp_dic.name}}</td>
-          <td>{{temp_dic.score}}</td>
-          <td>{{temp_dic.description}}</td>
-      </tr>
-      {% endfor %}
-  </table>
-  <p class="text-center"><a href="/" class="btn btn-outline-primary">메인 화면으로 이동</a></p>
-  {% endblock %} 
+    <div class="text-center">
+    <form name="search">
+    <select id="category1" class="btn btn-light dropdown-toggle">
+    <option value="">지역 선택</option>
+    <option value="gangwon_tbl">강원</option>
+    <option value="gyeonggi_tbl">경기</option>
+    <option value="gyeongsang_tbl">경상</option>
+    <option value="gwangju_tbl">광주</option>
+    <option value="daejeon_tbl">대전</option>
+    <option value="busan_tbl">부산</option>
+    <option value="seoul_tbl">서울</option>
+    <option value="sejong_tbl">세종</option>
+    <option value="ulsan_tbl">울산</option>
+    <option value="incheon_tbl">인천</option>
+    <option value="jeolla_tbl">전라</option>
+    <option value="jeju_tbl">제주</option>
+    <option value="chungcheong_tbl">충청</option>
+    </select>
+    <input type = "button" class="btn btn-light"
+      value = "선택"
+      onclick = "GetCountry()">
+    </form>
+    </div>
+    <script>
+        // 각 나라 선택결과 보냄
+        function GetCountry(){
+        var selConinent = document.getElementById("category1");
+        var continent = selConinent.value;
+        location.href ="select_internal_course"+continent;
+    }
+    </script>
+    {% endblock %}
 </body>
 </html>

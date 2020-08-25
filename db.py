@@ -45,11 +45,20 @@ def get_connection() :
     if conn:
         print('f 디비 접속 완료')
     return conn
-
+#70.12.227.62
 # 해외db접속
 def get_connection_fo() :
     conn = pymysql.connect(host='70.12.227.62', user='user2',
             password='multicampus1111', db='countrydb'
+            , charset='utf8')
+    if conn:
+        print('f 디비 접속 완료')
+    return conn
+
+# 국내db접속
+def get_connection_in():
+    conn = pymysql.connect(host='70.12.227.62', user='user2',
+            password='multicampus1111', db='korea_coursesdb'
             , charset='utf8')
     if conn:
         print('f 디비 접속 완료')
@@ -323,24 +332,21 @@ def get_city_list_select(continent, country):
     
     return temp_list
 
-def get_connection_ch(choose) : # 원하는 db 접속
-    conn = pymysql.connect(host='70.12.227.62', user='user2',
-            password='multicampus1111', db=choose
-            , charset='utf8')
-    if conn:
-        print('f 디비 접속 완료')
-    return conn
 
-def get_course_internal_list_data():    # 사진띄우기 간단하게 10개만
-    # 커서 생성
-    conn = get_connection_ch('korea_coursesdb')
+# 국내 지역코스 받아서 데이터 뿌리기
+def get_course_internal_list_data(location):    
+    
+    print(location)
+    conn = get_connection_in()
     cursor = conn.cursor()
 
-    sql = '''
-        select name, score, description from busan_tbl limit 10;
-    '''
-    cursor.execute(sql)
+    sql = 'select name, score, description from %s limit 30;'
+    cursor.execute(sql, location)
     result = cursor.fetchall()
+
+    # 지역명 받아오기
+    name = location.split('_')[0]
+    title = city[name]
 
     temp_list = []
     for row in result:
@@ -353,7 +359,7 @@ def get_course_internal_list_data():    # 사진띄우기 간단하게 10개만
     # 접속 종료
     conn.close()
     
-    return temp_list
+    return temp_list, title
 
 if __name__ == "__main__":
     # # temp_list = get_tourpoint_list()

@@ -69,18 +69,24 @@ def month_loc(no1):
     popular_dict = db.get_popular_list_month(no1)
     return render_template('korea_month+loc.html', popular_dict=popular_dict, month=no1)
 
-@app.route('/country_course')
-def country_course():
-    course_dict = db.get_course(1)
-    city_list = db.get_city_list(1)
-    return render_template('country_course.html', course_dict = course_dict, totalCount = len(course_dict), city_list = city_list)
-
+# 해외 top3 화면에서 해당하는 페이지 보이기
 @app.route('/overseas_course<country>')
 def overseas_course(country):
     course_dict = db.get_course(city_db[country])
     city_list = db.get_city_list(city_db[country])
     return render_template('country_course.html', course_dict = course_dict, totalCount = len(course_dict), city_list = city_list)
 
+# 해외 코스 화면에서 나라선택
+@app.route('/select_country_course')
+def country_course():
+    return render_template('select_country_course.html')
+
+# 선택된 나라 뿌리기
+@app.route('/select_country_course<continent>+<country>')
+def select_country_course(continent, country):
+    course_dict = db.get_course_select(continent, country)
+    city_list = db.get_city_list_select(continent, country)
+    return render_template('country_course.html', course_dict = course_dict, totalCount = len(course_dict), city_list = city_list)
 
 
 # 서버실행

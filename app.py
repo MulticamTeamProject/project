@@ -72,7 +72,7 @@ def month_loc(no1):
 @app.route('/korea_nation_<name>')
 def nation_loc(name):
     popular_dict = db.get_popular_list_nation(name)
-    return render_template('korea_nation.html', popular_dict=popular_dict, name=name)
+    return render_template('korea_month+loc.html', popular_dict=popular_dict, name=name)
 # 서버실행
 #app.run('127.0.0.1',5000,debug=True)
 

@@ -1,0 +1,32 @@
+<!-- 테스트 임시 화면 -->
+<!--첫 시작 페이지-->
+  <!--이전에 상속받은 layout.html이 날아옴-->
+  {% extends 'layout.html' %}
+  <!--이미지 carousel 슬라이드-->
+<!Doctype html>
+{% block pageTitle %}
+<html>
+    <head>
+
+    </head>
+    <body>
+        <div class="width:80%">
+            <ul>
+                {% for x in range(10) %}
+                <li>
+                    {{data[x].name}}
+                </li>
+                <li>
+                    {{data[x].score}}
+                </li>
+                <li>
+                    <img src="{{ url_for('static', filename=path[x])}}" alt="이미지 불가">
+                </li>
+                {% endfor %}
+            </div>
+                
+            </ul>
+        </div>
+    </body>
+</html>
+{% endblock %}

@@ -88,6 +88,15 @@ def select_country_course(continent, country):
     city_list = db.get_city_list_select(continent, country)
     return render_template('country_course.html', course_dict = course_dict, totalCount = len(course_dict), city_list = city_list)
 
+@app.route('/internal_course') # 국내 코스 리스트 10개만
+def internal_course():
+    data = db.get_course_internal_list_data()
+    path = []
+    for x in data:
+        p = '/images/' + x['name'] + '.jpg'
+        print(p)
+        path.append(p)
+    return render_template('internal_course.html', data = data, path = path)
 
 # 서버실행
 app.run('127.0.0.1',5000,debug=True)

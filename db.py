@@ -311,7 +311,37 @@ def get_city_list_select(continent, country):
     
     return temp_list
 
+def get_connection_ch(choose) : # 원하는 db 접속
+    conn = pymysql.connect(host='70.12.227.62', user='user2',
+            password='multicampus1111', db=choose
+            , charset='utf8')
+    if conn:
+        print('f 디비 접속 완료')
+    return conn
 
+def get_course_internal_list_data():    # 사진띄우기 간단하게 10개만
+    # 커서 생성
+    conn = get_connection_ch('korea_coursesdb')
+    cursor = conn.cursor()
+
+    sql = '''
+        select name, score, description from busan_tbl limit 10;
+    '''
+    cursor.execute(sql)
+    result = cursor.fetchall()
+
+    temp_list = []
+    for row in result:
+        temp_dic = {}
+        temp_dic['name'] = row[0]
+        temp_dic['score'] = row[1]
+        temp_dic['description'] = row[2]
+        temp_list.append(temp_dic)
+    
+    # 접속 종료
+    conn.close()
+    
+    return temp_list
 
 if __name__ == "__main__":
     # # temp_list = get_tourpoint_list()

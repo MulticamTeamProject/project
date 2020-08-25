@@ -1,17 +1,14 @@
 <style>
     /* 글씨체 지정 */
-    /* @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@700&family=Noto+Sans+KR:wght@700&display=swap'); */
-    @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Nanum+Gothic:wght@700&display=swap');
-
+    @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@700&family=Noto+Sans+KR:wght@700&display=swap');
     .title{
-        font-size: 40px;
+        font-size: 35px;
         text-align: center;
-        /* font-family: 'Noto Sans KR', sans-serif; */
-        font-family: 'Do Hyeon', sans-serif;
+        font-family: 'Noto Sans KR', sans-serif;
         padding: 20px;
     }
     .reMenu{
-        font-family: 'Nanum Gothic', sans-serif;
+      font-family: 'Nanum Gothic Coding', monospace;
     }
 
 </style>
@@ -83,6 +80,78 @@
         //     $('#adIframe').empty();
         //     $('#adIframe').append("<p><iframe src='/korea_month_12+loc_1' style='width: 100%; height:600px; border:none'></iframe></p>");
         // })
+
+        //지역 커서이동
+        $('#btn1').click(function(){
+            $('#adIframe').empty();
+            $('#adIframe').append("<p><iframe src='/korea_nation_seoul' style='width: 100%; height:600px; border:none'></iframe></p>");
+        })
+        $('#btn2').click(function(){
+            $('#adIframe').empty();
+            $('#adIframe').append("<p><iframe src='/korea_nation_busan' style='width: 100%; height:600px; border:none'></iframe></p>");
+        })
+        $('#btn3').click(function(){
+            $('#adIframe').empty();
+            $('#adIframe').append("<p><iframe src='/korea_nation_chungbuk' style='width: 100%; height:600px; border:none'></iframe></p>");
+        })
+        $('#btn4').click(function(){
+            $('#adIframe').empty();
+            $('#adIframe').append("<p><iframe src='/korea_nation_chungnam' style='width: 100%; height:600px; border:none'></iframe></p>");
+        })
+        $('#btn5').click(function(){
+            $('#adIframe').empty();
+            $('#adIframe').append("<p><iframe src='/korea_nation_daegu' style='width: 100%; height:600px; border:none'></iframe></p>");
+        })
+        $('#btn6').click(function(){
+            $('#adIframe').empty();
+            $('#adIframe').append("<p><iframe src='/korea_nation_daejun' style='width: 100%; height:600px; border:none'></iframe></p>");
+        })
+        $('#btn7').click(function(){
+            $('#adIframe').empty();
+            $('#adIframe').append("<p><iframe src='/korea_nation_gangwon' style='width: 100%; height:600px; border:none'></iframe></p>");
+        })
+        $('#btn8').click(function(){
+            $('#adIframe').empty();
+            $('#adIframe').append("<p><iframe src='/korea_nation_gwangju' style='width: 100%; height:600px; border:none'></iframe></p>");
+        })
+        $('#btn9').click(function(){
+            $('#adIframe').empty();
+            $('#adIframe').append("<p><iframe src='/korea_nation_gyeongbuk' style='width: 100%; height:600px; border:none'></iframe></p>");
+        })
+        $('#btn10').click(function(){
+            $('#adIframe').empty();
+            $('#adIframe').append("<p><iframe src='/korea_nation_gyeongnam' style='width: 100%; height:600px; border:none'></iframe></p>");
+        })
+        $('#btn11').click(function(){
+            $('#adIframe').empty();
+            $('#adIframe').append("<p><iframe src='/korea_nation_gyeonggi' style='width: 100%; height:600px; border:none'></iframe></p>");
+        })
+        $('#btn12').click(function(){
+            $('#adIframe').empty();
+            $('#adIframe').append("<p><iframe src='/korea_nation_incheon' style='width: 100%; height:600px; border:none'></iframe></p>");
+        })
+        $('#btn13').click(function(){
+            $('#adIframe').empty();
+            $('#adIframe').append("<p><iframe src='/korea_nation_jeju' style='width: 100%; height:600px; border:none'></iframe></p>");
+        })
+        $('#btn14').click(function(){
+            $('#adIframe').empty();
+            $('#adIframe').append("<p><iframe src='/korea_nation_jeonbuk' style='width: 100%; height:600px; border:none'></iframe></p>");
+        })
+        $('#btn15').click(function(){
+            $('#adIframe').empty();
+            $('#adIframe').append("<p><iframe src='/korea_nation_jeonnam' style='width: 100%; height:600px; border:none'></iframe></p>");
+        })
+        $('#btn16').click(function(){
+            $('#adIframe').empty();
+            $('#adIframe').append("<p><iframe src='/korea_nation_sejong' style='width: 100%; height:600px; border:none'></iframe></p>");
+        })
+        $('#btn17').click(function(){
+            $('#adIframe').empty();
+            $('#adIframe').append("<p><iframe src='/korea_nation_ulsan' style='width: 100%; height:600px; border:none'></iframe></p>");
+        })
+
+        //
         $('#recommend').click(function(){
             $('#adIframe').empty();
             $('#adIframe').append("<p><iframe src='/test' style='width: 100%; height:600px; border:none'></iframe></p>");
@@ -107,7 +176,7 @@
 <!-- 추천 목록 -->
 <ul class="nav justify-content-end">
     <li class="nav-item dropdown reMenu">
-      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" style="color: black;">월별 여행지 추천</a>
+      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" style="color: black;">월별</a>
       <div class="dropdown-menu">
         <a class="dropdown-item" id='btn1'>1월</a>
         <a class="dropdown-item" id='btn2'>2월</a>
@@ -123,29 +192,31 @@
         <a class="dropdown-item" id='btn12'>12월</a>
       </div>
     </li>
-    <!-- <li class="nav-item dropdown reMenu">
-        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" style="color: black;">지역별 여행지 추천</a>
+        <li class="nav-item dropdown reMenu">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" style="color: black;">지역별</a>
         <div class="dropdown-menu">
           <a class="dropdown-item" id='btn1'>서울</a>
-          <a class="dropdown-item" id='btn2'>경기</a>
-          <a class="dropdown-item" id='btn3'>3월</a>
-          <a class="dropdown-item" id='btn4'>4월</a>
-          <a class="dropdown-item" id='btn5'>5월</a>
-          <a class="dropdown-item" id='btn6'>6월</a>
-          <a class="dropdown-item" id='btn7'>7월</a>
-          <a class="dropdown-item" id='btn8'>8월</a>
-          <a class="dropdown-item" id='btn9'>9월</a>
-          <a class="dropdown-item" id='btn10'>10월</a>
-          <a class="dropdown-item" id='btn11'>11월</a>
-          <a class="dropdown-item" id='btn12'>12월</a>
+          <a class="dropdown-item" id='btn2'>부산</a>
+          <a class="dropdown-item" id='btn3'>충북</a>
+          <a class="dropdown-item" id='btn4'>충남</a>
+          <a class="dropdown-item" id='btn4'>대구</a>
+          <a class="dropdown-item" id='btn5'>대전</a>
+          <a class="dropdown-item" id='btn6'>강원</a>
+          <a class="dropdown-item" id='btn7'>광주</a>
+          <a class="dropdown-item" id='btn8'>경북</a>
+          <a class="dropdown-item" id='btn9'>경남</a>
+          <a class="dropdown-item" id='btn10'>경기</a>
+          <a class="dropdown-item" id='btn11'>인천</a>
+          <a class="dropdown-item" id='btn12'>제주</a>
+          <a class="dropdown-item" id='btn13'>전북</a>
+          <a class="dropdown-item" id='btn14'>전남</a>
+          <a class="dropdown-item" id='btn15'>세종</a>
+          <a class="dropdown-item" id='btn16'>울산</a>
         </div>
-      </li> -->
-    <!-- <li class="nav-item">
+      </li> 
+    <li class="nav-item">
       <a class="nav-link reMenu" id="recommend">추천</a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link reMenu" id="recommend2">추천2</a>
-    </li> -->
   </ul>
 
   <hr>

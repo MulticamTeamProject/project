@@ -266,6 +266,50 @@ def get_city_list(country):
     
     return temp_list
 
+def get_course_select(continent, country):
+    conn = get_connection_fo()
+    cursor = conn.cursor()
+    sql = 'use ' + continent
+    cursor.execute(sql)
+
+    sql = 'select * from ' + country
+    cursor.execute(sql)
+    result = cursor.fetchall()
+
+    temp_list = []
+    for row in result:
+        temp_dic = {}
+        temp_dic['nation'] = row[2]
+        temp_dic['city'] = row[3]
+        temp_dic['name'] = row[4]
+        temp_dic['score'] = row[5]
+        temp_dic['description'] = row[6]
+        temp_list.append(temp_dic)
+    
+    # 접속 종료
+    conn.close()
+    
+    return temp_list
+
+def get_city_list_select(continent, country):
+    conn = get_connection_fo()
+    cursor = conn.cursor()
+    sql = 'use ' + continent
+    cursor.execute(sql)
+
+    sql = 'select distinct city from ' + country
+    cursor.execute(sql)
+    result = cursor.fetchall()
+
+    temp_list = []
+    for row in result:
+        temp_list.append(row[0])
+    
+    # 접속 종료
+    conn.close()
+    
+    return temp_list
+
 
 
 if __name__ == "__main__":

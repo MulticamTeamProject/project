@@ -93,7 +93,7 @@ def internal_course():
     data = db.get_course_internal_list_data()
     path = []
     for x in data:
-        p = '/images/' + x['name'] + '.jpg'
+        p = 'internal_img/images/' + x['name'] + '.jpg'
         print(p)
         path.append(p)
     return render_template('internal_course.html', data = data, path = path)

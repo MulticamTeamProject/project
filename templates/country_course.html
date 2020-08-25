@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- 부트스트랩 연결 -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!--css font-->
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
+    <!--그림폰트 연결-->
+     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" 
+     integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous"> 
+</head>
+<style>
+  @font-face {
+    font-family:'BlackHanSans';
+    src: url('/static/fonts/BlackHanSans-Regular.ttf'); /*폰트지정*/
+  }
+  .m-trip-sketch__inner{
+    display:flex;
+    font-size:40px;
+    font-family: 'BlackHanSans';;
+  }
+  .c-sketch-text-v2__text{
+    flex:2;
+    margin-right: 70px;
+    font-size:20px;
+  }
+</style>
+<body>
+  <!--첫 시작 페이지-->
+  <!--이전에 상속받은 layout.html이 날아옴-->
+  {% extends 'layout.html' %}
+  <!--이미지 carousel 슬라이드-->
+  {% block pageTitle %}
+  <h1 class="text-center" style="margin-top: 50px; margin-bottom: 20px;"><span style="color: red;">{{course_dict[0]['nation']}}</span> Course</h1>
+  <hr>
+  <!-- 검색 폼 -->
+  <div class="text-center">
+  {% for city in city_list %}
+  <div id="#{{city}}" style="display: inline-block;"><a href="#{{city}}" class="btn btn-link">{{city}}</a></div>
+  {% endfor %}
+  </div>
+  <hr>
+  <!-- <h2 class="text-center" style="margin: 30px;">여행지 수 : {{totalCount}}</h2> -->
+  <table cellpadding="10" cellspacing="0" align="center" class="table table-bordered table-hover" style="width: 80%;">
+      <tr class="table-primary text-center">
+          <th>City</th>
+          <th>Name</th>
+          <th>Score</th>
+          <th>Description</th>
+      </tr>
+      {% for temp_dic in course_dict %}
+      <tr class="text-center" id="{{temp_dic.city}}">
+          <td>{{temp_dic.city}}</td>
+          <td>{{temp_dic.name}}</td>
+          <td>{{temp_dic.score}}</td>
+          <td>{{temp_dic.description}}</td>
+      </tr>
+      {% endfor %}
+  </table>
+  <!-- {{squat_list}} -->
+  <p class="text-center"><a href="/" class="btn btn-outline-primary">메인 화면으로 이동</a></p>
+  {% endblock %} 
+</body>
+</html>

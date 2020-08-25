@@ -8,36 +8,40 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <style>
         /* 폰트 지정 */
-        @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Noto+Sans+KR:wght@500&display=swap');
 
-        .blue {
-            color: CornflowerBlue;
+
+        .first {
+            color: #E96A6A;
             font-size: 25px;
             font-family: 'Do Hyeon', sans-serif;
             padding: 10px;
         }
 
-        .pink {
-            color: MistyRose;
+        .second {
+            color: #E9E96A;
             font-size: 25px;
             font-family: 'Do Hyeon', sans-serif;
             padding: 10px;
         }
 
-        .green {
-            color: MediumAquamarine;
+        .third {
+            color: #6AE993;
             font-size: 25px;
             font-family: 'Do Hyeon', sans-serif;
             padding: 10px;
         }
 
-        .pink2 {
+        #month{
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        /* .pink2 {
             color: cornflowerblue;
         }
 
         .tc {
             color: black;
-        }
+        } */
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -67,7 +71,7 @@
                     <div>
                         <div class="card">
                             <div class="card-body"> <canvas id="myChart1"></canvas> </div>
-                            <div class="card card-body text-center bg-light">
+                            <div class="card card-body text-center" style="background-color: #F5FAFE">
                                 <h3 id="month">{{month}}월</h3>
                             </div>
                         </div>
@@ -97,7 +101,7 @@
                     }
 
                     data = {
-                        datasets: [{ backgroundColor: ['red', 'yellow', 'green', 'blue', 'purple'], data: data_array }], // 라벨의 이름이 툴팁처럼 마우스가 근처에 오면 나타남
+                        datasets: [{ backgroundColor: ['#E96A6A', '#E9E96A', '#6AE993', '#6AC0E9', '#C06AE9'], data: data_array }], // 라벨의 이름이 툴팁처럼 마우스가 근처에 오면 나타남
                         labels: label_array
                     };
                     //내/외국인
@@ -115,13 +119,13 @@
                 <div class="container">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link pink" href="/test" target="_blank">■ {{popular_dict[0]['name']}}</a>
+                            <a class="nav-link first" href="/test" target="_blank">■ {{popular_dict[0]['name']}}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link green" href="/test" target="_blank">■ {{popular_dict[1]['name']}}</a>
+                            <a class="nav-link second" href="/test" target="_blank">■ {{popular_dict[1]['name']}}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link blue" href="/test" target="_blank">■ {{popular_dict[2]['name']}}</a>
+                            <a class="nav-link third" href="/test" target="_blank">■ {{popular_dict[2]['name']}}</a>
                         </li>
                     </ul>
                 </div>

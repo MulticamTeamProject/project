@@ -52,6 +52,7 @@
   <!-- <h2 class="text-center" style="margin: 30px;">여행지 수 : {{totalCount}}</h2> -->
   <table cellpadding="10" cellspacing="0" align="center" class="table table-bordered table-hover" style="width: 80%;">
       <tr class="table-primary text-center">
+          <th> </th>
           <th>City</th>
           <th>Name</th>
           <th>Score</th>
@@ -59,6 +60,7 @@
       </tr>
       {% for temp_dic in course_dict %}
       <tr class="text-center" id="{{temp_dic.city}}">
+          <td> </td>
           <td>{{temp_dic.city}}</td>
           <td>{{temp_dic.name}}</td>
           <td>{{temp_dic.score}}</td>

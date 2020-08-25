@@ -20,10 +20,9 @@
      integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous"> 
 </head>
 <style>
-  @font-face {
+  /* @font-face {
     font-family:'BlackHanSans';
-    src: url('/static/fonts/BlackHanSans-Regular.ttf'); /*폰트지정*/
-  }
+    src: url('/static/fonts/BlackHanSans-Regular.ttf');
   .m-trip-sketch__inner{
     display:flex;
     font-size:40px;
@@ -33,14 +32,24 @@
     flex:2;
     margin-right: 70px;
     font-size:20px;
-  }
+  } */
+  @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@700&family=Noto+Sans+KR:wght@700&display=swap');
+    .title{
+        font-size: 35px;
+        text-align: center;
+        font-family: 'Noto Sans KR', sans-serif;
+        padding: 20px;
+    }
+    .btn{
+      font-family: 'Nanum Gothic Coding', monospace;
+    }
 </style>
 <body>
   <!--첫 시작 페이지-->
   <!--이전에 상속받은 layout.html이 날아옴-->
   {% extends 'layout.html' %}
   {% block pageTitle %}
-  <h1 class="text-center" style="margin-top: 50px; margin-bottom: 20px;"><span style="color: red;"></span>각 나라별 코스</h1>
+  <h1 class="title""><span style="color: red;"></span>각 나라별 코스</h1>
   <hr>
   <script>
     function setCategory2(){

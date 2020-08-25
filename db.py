@@ -89,24 +89,48 @@ def get_popular_list_month(month):
     conn = get_connection()
     cursor = conn.cursor()
 
-    sql = '''with abc(gungu, name, korean, foreigner)
-        as (select GUNGU, name, sum(korean) as korean, sum(foreigner) as foreigner from seoultbl where month = %s group by name)
-        select gungu, name, korean, foreigner, korean+foreigner as total from abc order by total desc limit 5; '''
-    cursor.execute(sql, month)
+    # sql = '''with abc(gungu, name, korean, foreigner)
+    #     as (select GUNGU, name, sum(korean) as korean, sum(foreigner) as foreigner from seoultbl where month = %s group by name)
+    #     select gungu, name, korean, foreigner, korean+foreigner as total from abc order by total desc limit 5; '''
+    sql = '''select name, sum(korean) as korean, sum(foreigner) as foreigner from seoultbl where month = %s group by name
+            union select name, sum(korean) as korean, sum(foreigner) as foreigner from busantbl where month = %s group by name
+            union select name, sum(korean) as korean, sum(foreigner) as foreigner from chungbuktbl where month = %s group by name
+            union select name, sum(korean) as korean, sum(foreigner) as foreigner from chungnamtbl where month = %s group by name
+            union select name, sum(korean) as korean, sum(foreigner) as foreigner from daegutbl where month = %s group by name
+            union select name, sum(korean) as korean, sum(foreigner) as foreigner from daejeontbl where month = %s group by name
+            union select name, sum(korean) as korean, sum(foreigner) as foreigner from gangwontbl where month = %s group by name
+            union select name, sum(korean) as korean, sum(foreigner) as foreigner from gwangjutbl where month = %s group by name
+            union select name, sum(korean) as korean, sum(foreigner) as foreigner from gyeongbuktbl where month = %s group by name
+            union select name, sum(korean) as korean, sum(foreigner) as foreigner from gyeongnamtbl where month = %s group by name
+            union select name, sum(korean) as korean, sum(foreigner) as foreigner from gyeonggitbl where month = %s group by name
+            union select name, sum(korean) as korean, sum(foreigner) as foreigner from incheontbl where month = %s group by name
+            union select name, sum(korean) as korean, sum(foreigner) as foreigner from jejutbl where month = %s group by name
+            union select name, sum(korean) as korean, sum(foreigner) as foreigner from jeonbuktbl where month = %s group by name
+            union select name, sum(korean) as korean, sum(foreigner) as foreigner from jeonnamtbl where month = %s group by name
+            union select name, sum(korean) as korean, sum(foreigner) as foreigner from sejongtbl where month = %s group by name
+            union select name, sum(korean) as korean, sum(foreigner) as foreigner from ulsantbl where month = %s group by name
+            order by korean+foreigner desc limit 5;'''
+    cursor.execute(sql, (month,month,month,month,month,month,month,month,month,month,month,month,month,month,month,month,month))
     result = cursor.fetchall()
 
     temp_list = []
+    # for row in result:
+    #     temp_dic = {}
+    #     temp_dic['gungu'] = row[0]
+    #     temp_dic['name'] = row[1]
+    #     temp_dic['korean'] = int(row[2])
+    #     temp_dic['foreigner'] = int(row[3])
+    #     temp_dic['total'] = int(row[4])
+    #     # temp_dic1 = {i: temp_dic}
+    #     # temp_list.append(temp_dic1)
+    #     temp_list.append(temp_dic)
     for row in result:
         temp_dic = {}
-        temp_dic['gungu'] = row[0]
-        temp_dic['name'] = row[1]
-        temp_dic['korean'] = int(row[2])
-        temp_dic['foreigner'] = int(row[3])
-        temp_dic['total'] = int(row[4])
-        # temp_dic1 = {i: temp_dic}
-        # temp_list.append(temp_dic1)
+        temp_dic['name'] = row[0]
+        temp_dic['korean'] = int(row[1])
+        temp_dic['foreigner'] = int(row[2])
         temp_list.append(temp_dic)
-    
+
     # 접속 종료
     conn.close()
     return temp_list
@@ -181,7 +205,7 @@ def get_popular_list_month_loc_fo(month):
         union select country, sum(nTourist) as total from americatbl where month = %s group by country
         union select country, sum(nTourist) as total from europetbl where month = %s group by country
         union select country, sum(nTourist) as total from oceaniatbl where month = %s group by country
-        order by total desc limit 3;
+        order by total desc limit 5;
     '''
     cursor.execute(sql, (month, month, month, month, month))
     result = cursor.fetchall()
@@ -341,23 +365,25 @@ def get_popular_list_month_loc_fo(month):
 #     conn.close()
 
 if __name__ == "__main__":
-    # temp_list = get_tourpoint_list()
-    temp_list = get_popular_list()
-    print(temp_list)
+    # # temp_list = get_tourpoint_list()
+    # temp_list = get_popular_list()
+    # print(temp_list)
 
-    # st_json = json.dumps(temp_list[0], indent=4)
-    # print(st_json)
+    # # st_json = json.dumps(temp_list[0], indent=4)
+    # # print(st_json)
 
-    temp_list = get_popular_list_year(2020)
-    print(temp_list)
+    # temp_list = get_popular_list_year(2020)
+    # print(temp_list)
 
-    temp_list = get_popular_list_month_loc(1, 1)
-    print(temp_list)
+    # temp_list = get_popular_list_month_loc(1, 1)
+    # print(temp_list)
 
-    today = datetime.date.today()
-    print(today.year-1, today.month)
+    # today = datetime.date.today()
+    # print(today.year-1, today.month)
 
-    temp_list = get_popular_list_month_loc_fo(2)
+    # temp_list = get_popular_list_month_loc_fo(2)
+    # print(temp_list)
+    temp_list = get_popular_list_month(1)
     print(temp_list)
 
 

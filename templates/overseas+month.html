@@ -86,7 +86,7 @@
                     var label_array = []
                     var data_array = []
 
-                    for (var i = 0; i < 3; i++) {
+                    for (var i = 0; i < 5; i++) {
                         label_array.push(array[i]["country"]);
                         data_array.push(array[i]["total"]);
                     }
@@ -94,7 +94,7 @@
                     // document.write('hello');
 
                     data = {
-                        datasets: [{ backgroundColor: ['red', 'yellow', 'blue'], data: data_array }], // 라벨의 이름이 툴팁처럼 마우스가 근처에 오면 나타남
+                        datasets: [{ backgroundColor: ['red', 'yellow', 'green', 'blue', 'purple'], data: data_array }], // 라벨의 이름이 툴팁처럼 마우스가 근처에 오면 나타남
                         labels: label_array
                     };
                     // 가운데 구멍이 없는 파이형 차트 

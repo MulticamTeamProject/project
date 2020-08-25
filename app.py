@@ -57,10 +57,15 @@ def advise_korea():
 #     return render_template('advise_main.html', popular_dict=popular_dict, month=8, popular_dict_year=popular_dict_year, year=2020)
 
 # 월(지역별)은 top5/내-외국인비율 표시
-@app.route('/korea_month_<no1>+loc_<no2>')
-def month_loc(no1, no2):
-    popular_dict, city = db.get_popular_list_month_loc(no1, int(no2))
-    return render_template('korea_month+loc.html', popular_dict=popular_dict, month=no1, city=city)
+# @app.route('/korea_month_<no1>+loc_<no2>')
+# def month_loc(no1, no2):
+#     popular_dict, city = db.get_popular_list_month_loc(no1, int(no2))
+#     return render_template('korea_month+loc.html', popular_dict=popular_dict, month=no1, city=city)
+
+@app.route('/korea_month_<no1>')
+def month_loc(no1):
+    popular_dict = db.get_popular_list_month(no1)
+    return render_template('korea_month+loc.html', popular_dict=popular_dict, month=no1)
 
 
 # 서버실행

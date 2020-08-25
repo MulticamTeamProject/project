@@ -64,18 +64,17 @@ def advise_korea():
 #     popular_dict, city = db.get_popular_list_month_loc(no1, int(no2))
 #     return render_template('korea_month+loc.html', popular_dict=popular_dict, month=no1, city=city)
 
+# 선택한 월에 해당하는 인기 관광지
 @app.route('/korea_month_<no1>')
 def month_loc(no1):
     popular_dict = db.get_popular_list_month(no1)
     return render_template('korea_month+loc.html', popular_dict=popular_dict, month=no1)
 
+# 선택한 지역에 해당하는 인기 관광지
 @app.route('/korea_nation_<name>')
 def nation_loc(name):
-    popular_dict = db.get_popular_list_nation(name)
-    return render_template('korea_month+loc.html', popular_dict=popular_dict, name=name)
-# 서버실행
-#app.run('127.0.0.1',5000,debug=True)
-
+    popular_dict, city = db.get_popular_list_nation(name)
+    return render_template('korea_month+loc.html', popular_dict=popular_dict, name=city)
 
 # 해외 top3 화면에서 해당하는 페이지 보이기
 @app.route('/overseas_course<country>')

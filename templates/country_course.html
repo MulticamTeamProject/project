@@ -52,7 +52,7 @@
   <!--이전에 상속받은 layout.html이 날아옴-->
   {% extends 'layout.html' %}
   {% block pageTitle %}
-  <h1 class="text-center" style="margin-top: 50px; margin-bottom: 20px;"><span style="color: red;">{{course_dict[0]['nation']}}</span> 주요 관광지</h1>
+  <h1 class="text-center" style="margin-top: 50px; margin-bottom: 20px;"><span style="color: red;">{{course_dict[0]['nation'].upper()}}</span> 주요 관광지</h1>
   <hr>
   <!-- city list 출력. 각 city 누르면 아래 리스트에서 해당 city로 감 -->
   <div class="text-center">

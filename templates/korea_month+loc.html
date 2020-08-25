@@ -72,7 +72,11 @@
                         <div class="card">
                             <div class="card-body"> <canvas id="myChart1"></canvas> </div>
                             <div class="card card-body text-center" style="background-color: #F5FAFE">
+                                {% if month %}
                                 <h3 id="month">{{month}}월</h3>
+                                {% else %}
+                                <h3 id="month">{{name}}</h3>
+                                {% endif %}
                             </div>
                         </div>
                     </div>

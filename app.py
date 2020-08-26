@@ -3,7 +3,7 @@ from flask import Flask, render_template, request
 import db
 import datetime
 
-city_db = {'일본':'japan_tbl', '중국':'china_tbl', '베트남':'vietnam_tbl', '미국':'usa_tbl'}
+city_db = {'일본':'japan_tbl', '중국':'china_tbl', '베트남':'vietnam_tbl', '미국':'usa_tbl', '태국':'thailand_tbl', '필리핀':'philippines_tbl'}
 
 # flask 객체 생성
 app = Flask(__name__)

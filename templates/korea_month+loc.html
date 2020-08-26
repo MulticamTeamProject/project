@@ -87,16 +87,15 @@
                     };
 
 
-                    document.getElementById("myChart1").onclick = function(evt){
+                    document.getElementById("myChart1").onclick = function (evt) {
                         var activePoints = myMonthChart.getElementAtEvent(event);
 
-                        // make sure click was on an actual point
                         if (activePoints.length > 0) {
-                        var clickedElementindex = activePoints[0]._index;
-                        var label = myMonthChart.data.labels[clickedElementindex];
-                        var percent_ko = 100*sum_ko[clickedElementindex]/(sum_ko[clickedElementindex]+sum_fo[clickedElementindex])
-                        var percent_fo = 100*sum_fo[clickedElementindex]/(sum_ko[clickedElementindex]+sum_fo[clickedElementindex])
-                        alert(label + " : " + "Korean : " + percent_ko.toFixed(1) + "%" + " - " + "Foreigner : " + percent_fo.toFixed(1) + "%");
+                            var clickedElementindex = activePoints[0]._index;
+                            var label = myMonthChart.data.labels[clickedElementindex];
+                            var percent_ko = 100 * sum_ko[clickedElementindex] / (sum_ko[clickedElementindex] + sum_fo[clickedElementindex])
+                            var percent_fo = 100 * sum_fo[clickedElementindex] / (sum_ko[clickedElementindex] + sum_fo[clickedElementindex])
+                            alert(label + " : " + "Korean : " + percent_ko.toFixed(1) + "%" + " - " + "Foreigner : " + percent_fo.toFixed(1) + "%");
                         }
                     };
 

@@ -75,6 +75,17 @@
                         datasets: [{ backgroundColor: ['#E96A6A', '#E9E96A', '#6AE993', '#6AC0E9', '#C06AE9'], data: data_array }], // 라벨의 이름이 툴팁처럼 마우스가 근처에 오면 나타남
                         labels: label_array
                     };
+
+                    document.getElementById("myChart1").onclick = function (evt) {
+                        var activePoints = myMonthChart.getElementAtEvent(event);
+
+                        if (activePoints.length > 0) {
+                            var clickedElementindex = activePoints[0]._index;
+                            var label = myMonthChart.data.labels[clickedElementindex];
+                            window.open("/overseas_course" + label)
+                        }
+                    };
+
                     // 가운데 구멍이 없는 파이형 차트 
                     var ctx1 = document.getElementById("myChart1"); var myMonthChart = new Chart(ctx1, { type: 'doughnut', data: data, options: {} });
                 </script>

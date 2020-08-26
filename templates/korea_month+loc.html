@@ -71,14 +71,33 @@
                     var array = {{ popular_dict| tojson}};
                     var label_array = []
                     var data_array = []
+                    var sum_ko = []
+                    var sum_fo = []
                     for (var i = 0; i < 5; i++) {
                         label_array.push(array[i]["name"]);
                         data_array.push(array[i]["korean"] + array[i]["foreigner"]);
+
+                        sum_ko.push(array[i]["korean"])
+                        sum_fo.push(array[i]["foreigner"])
                     }
 
                     data = {
                         datasets: [{ backgroundColor: ['#E96A6A', '#E9E96A', '#6AE993', '#6AC0E9', '#C06AE9'], data: data_array }], // 라벨의 이름이 툴팁처럼 마우스가 근처에 오면 나타남
                         labels: label_array
+                    };
+
+
+                    document.getElementById("myChart1").onclick = function(evt){
+                        var activePoints = myMonthChart.getElementAtEvent(event);
+
+                        // make sure click was on an actual point
+                        if (activePoints.length > 0) {
+                        var clickedElementindex = activePoints[0]._index;
+                        var label = myMonthChart.data.labels[clickedElementindex];
+                        var percent_ko = 100*sum_ko[clickedElementindex]/(sum_ko[clickedElementindex]+sum_fo[clickedElementindex])
+                        var percent_fo = 100*sum_fo[clickedElementindex]/(sum_ko[clickedElementindex]+sum_fo[clickedElementindex])
+                        alert(label + " : " + "Korean : " + percent_ko.toFixed(1) + "%" + " - " + "Foreigner : " + percent_fo.toFixed(1) + "%");
+                        }
                     };
 
                     // 가운데 구멍이 없는 파이형 차트 

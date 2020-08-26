@@ -18,6 +18,39 @@
     <!--그림폰트 연결-->
      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" 
      integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous"> 
+
+     <script type="text/javascript">
+      var stmnLEFT = 10; // 오른쪽 여백 
+      var stmnGAP1 = 0; // 위쪽 여백 
+      var stmnGAP2 = 150; // 스크롤시 브라우저 위쪽과 떨어지는 거리 
+      var stmnBASE = 150; // 스크롤 시작위치 
+      var stmnActivateSpeed = 35; //스크롤을 인식하는 딜레이 (숫자가 클수록 느리게 인식)
+      var stmnScrollSpeed = 20; //스크롤 속도 (클수록 느림)
+      var stmnTimer; 
+      
+      function RefreshStaticMenu() { 
+       var stmnStartPoint, stmnEndPoint; 
+       stmnStartPoint = parseInt(document.getElementById('STATICMENU').style.top, 10); 
+       stmnEndPoint = Math.max(document.documentElement.scrollTop, document.body.scrollTop) + stmnGAP2; 
+       if (stmnEndPoint < stmnGAP1) stmnEndPoint = stmnGAP1; 
+       if (stmnStartPoint != stmnEndPoint) { 
+        stmnScrollAmount = Math.ceil( Math.abs( stmnEndPoint - stmnStartPoint ) / 15 ); 
+        document.getElementById('STATICMENU').style.top = parseInt(document.getElementById('STATICMENU').style.top, 10) + ( ( stmnEndPoint<stmnStartPoint ) ? -stmnScrollAmount : stmnScrollAmount ) + 'px'; 
+        stmnRefreshTimer = stmnScrollSpeed; 
+        }
+       stmnTimer = setTimeout("RefreshStaticMenu();", stmnActivateSpeed); 
+       } 
+      function InitializeStaticMenu() {
+       document.getElementById('STATICMENU').style.right = stmnLEFT + 'px';  //처음에 오른쪽에 위치. left로 바꿔도.
+       document.getElementById('STATICMENU').style.top = document.body.scrollTop + stmnBASE + 'px'; 
+       RefreshStaticMenu();
+       }
+     </script>
+     
+     <style type="text/css">
+     #STATICMENU { margin: 0pt; padding: 0pt;  position: absolute; right: 0px; top: 0px;}
+     </style>
+         
 </head>
 <style>
   /* @font-face {
@@ -47,12 +80,18 @@
     }
 
 </style>
-<body>
+<body onload="InitializeStaticMenu();">
+  <div id="STATICMENU" style="background-color: beige;">
+    <div id=#header><a href="#top" class="btn btn-link">Top</a></div>
+    {% for city in city_list %}
+  <div id="#{{city}}"><a href="#{{city}}" class="btn btn-link">{{city}}</a></div>
+  {% endfor %}
+    </div>
   <!--첫 시작 페이지-->
   <!--이전에 상속받은 layout.html이 날아옴-->
   {% extends 'layout.html' %}
   {% block pageTitle %}
-  <h1 class="text-center" style="margin-top: 50px; margin-bottom: 20px;"><span style="color: red;">{{course_dict[0]['nation'].upper()}}</span> 주요 관광지</h1>
+  <h1 id="top" class="text-center" style="margin-top: 50px; margin-bottom: 20px;"><span style="color: red;">{{course_dict[0]['nation'].upper()}}</span> 주요 관광지</h1>
   <hr>
   <!-- city list 출력. 각 city 누르면 아래 리스트에서 해당 city로 감 -->
   <div class="text-center">

@@ -18,14 +18,17 @@ def index():
 def advise_korea():
     today = datetime.date.today()
     month = today.month
-    # year = today.year-1
-    # popular_dict_year = db.get_popular_list_year(year)
     return render_template('korea_advise.html', month=month)
 
 @app.route('/korea_month_<no1>') # 국내 선택한 월에 해당하는 인기 관광지
 def month_loc(no1):
     popular_dict = db.get_popular_list_month(no1)
     return render_template('korea_month+loc.html', popular_dict=popular_dict, month=no1)
+
+@app.route('/korea_year_<no1>') # 국내 선택한 년도에 해당하는 인기 관광지
+def year_loc(no1):
+    popular_dict = db.get_popular_list_year(no1)
+    return render_template('korea_month+loc.html', popular_dict=popular_dict, year=no1)
 
 @app.route('/korea_nation_<name>') # 국내 선택한 지역에 해당하는 인기 관광지
 def nation_loc(name):
@@ -44,6 +47,11 @@ def month():
 def overseas_month(no1):
     popular_dict = db.get_popular_list_month_loc_fo(no1)
     return render_template('overseas+month.html', popular_dict=popular_dict, month=no1)
+
+@app.route('/overseas_year_<no1>') # 해외 선택한 년도에 해당하는 인기 관광지
+def overseas_year(no1):
+    popular_dict = db.get_popular_list_year_loc_fo(no1)
+    return render_template('overseas+month.html', popular_dict=popular_dict, year=no1)
 
 @app.route('/overseas_course<country>') # 해외 결과 top3 클릭 -> 해당하는 페이지 보이기(새창)
 def overseas_course(country):

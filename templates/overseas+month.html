@@ -30,9 +30,11 @@
             font-family: 'Do Hyeon', sans-serif;
             /* padding: 10px; */
         }
-        #month{
+
+        #month {
             font-family: 'Noto Sans KR', sans-serif;
         }
+
         /* .pink2 {
             color: cornflowerblue;
         } */
@@ -55,7 +57,7 @@
 </head>
 
 <body>
-    <table align="center" width="80%"  cellpadding=20>
+    <table align="center" width="80%" cellpadding=20>
         <!-- <tr>
             <td align="center">1월</td>
             <td></td>
@@ -64,18 +66,22 @@
             <td align="center" width=70%>
                 <!-- 그래프 테스트 이미지 -->
                 <!-- <img src="/static/image/graph_test.png" width="400px" height="350px"> -->
-    
-                    <!-- <div class="col-lg-6"> -->
-                    <div>
-                        <div class="card">
-                            <div class="card-body"> <canvas id="myChart1"></canvas> </div>
-                            <div class="card card-body text-center" style="background-color: #F5FAFE;">
-                                <h3 id="month">{{month}}월</h3>
-                            </div>
+
+                <!-- <div class="col-lg-6"> -->
+                <div>
+                    <div class="card">
+                        <div class="card-body"> <canvas id="myChart1"></canvas> </div>
+                        <div class="card card-body text-center" style="background-color: #F5FAFE;">
+                            {% if month %}
+                            <h3 id="month">{{month}}월</h3>
+                            {% else %}
+                            <h3 id="month">{{year}}</h3>
+                            {% endif %}
                         </div>
                     </div>
-                    <!-- <div class="col-lg-6"> -->
-                    <!-- <div>
+                </div>
+                <!-- <div class="col-lg-6"> -->
+                <!-- <div>
                         <div class="card">
                             <div class="card-body"> <canvas id="myChart3"></canvas> </div>
                             <div class="card card-body text-center bg-light">
@@ -84,7 +90,7 @@
                         </div>
                     </div> -->
                 <script>
-                    var array = {{popular_dict|tojson}};
+                    var array = {{ popular_dict| tojson}};
                     var label_array = []
                     var data_array = []
 
@@ -98,7 +104,7 @@
                         labels: label_array
                     };
                     // 가운데 구멍이 없는 파이형 차트 
-                    var ctx1 = document.getElementById("myChart1"); var myMonthChart = new Chart(ctx1, { type: 'doughnut', data: data, options: {}});
+                    var ctx1 = document.getElementById("myChart1"); var myMonthChart = new Chart(ctx1, { type: 'doughnut', data: data, options: {} });
                 </script>
             </td>
             <td>
@@ -106,13 +112,16 @@
                 <div class="container">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link first" href="/overseas_course{{popular_dict[0]['country']}}" target="_blank">■ {{popular_dict[0]['country']}}</a>
+                            <a class="nav-link first" href="/overseas_course{{popular_dict[0]['country']}}"
+                                target="_blank">■ {{popular_dict[0]['country']}}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link second" href="/overseas_course{{popular_dict[1]['country']}}" target="_blank">■ {{popular_dict[1]['country']}}</a>
+                            <a class="nav-link second" href="/overseas_course{{popular_dict[1]['country']}}"
+                                target="_blank">■ {{popular_dict[1]['country']}}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link third" href="/overseas_course{{popular_dict[2]['country']}}" target="_blank">■ {{popular_dict[2]['country']}}</a>
+                            <a class="nav-link third" href="/overseas_course{{popular_dict[2]['country']}}"
+                                target="_blank">■ {{popular_dict[2]['country']}}</a>
                         </li>
                     </ul>
                 </div>

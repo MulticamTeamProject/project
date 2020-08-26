@@ -72,6 +72,44 @@ def get_popular_list_month(month):
     # 접속 종료
     conn.close()
     return temp_list
+
+# 각 연도별로 인기있는 관광지 가져오는 함수(2015-2019)
+def get_popular_list_year(year):
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    sql = '''select name, sum(korean) as korean, sum(foreigner) as foreigner from seoultbl where year = %s group by name
+            union select name, sum(korean) as korean, sum(foreigner) as foreigner from busantbl where year = %s group by name
+            union select name, sum(korean) as korean, sum(foreigner) as foreigner from chungbuktbl where year = %s group by name
+            union select name, sum(korean) as korean, sum(foreigner) as foreigner from chungnamtbl where year = %s group by name
+            union select name, sum(korean) as korean, sum(foreigner) as foreigner from daegutbl where year = %s group by name
+            union select name, sum(korean) as korean, sum(foreigner) as foreigner from daejeontbl where year = %s group by name
+            union select name, sum(korean) as korean, sum(foreigner) as foreigner from gangwontbl where year = %s group by name
+            union select name, sum(korean) as korean, sum(foreigner) as foreigner from gwangjutbl where year = %s group by name
+            union select name, sum(korean) as korean, sum(foreigner) as foreigner from gyeongbuktbl where year = %s group by name
+            union select name, sum(korean) as korean, sum(foreigner) as foreigner from gyeongnamtbl where year = %s group by name
+            union select name, sum(korean) as korean, sum(foreigner) as foreigner from gyeonggitbl where year = %s group by name
+            union select name, sum(korean) as korean, sum(foreigner) as foreigner from incheontbl where year = %s group by name
+            union select name, sum(korean) as korean, sum(foreigner) as foreigner from jejutbl where year = %s group by name
+            union select name, sum(korean) as korean, sum(foreigner) as foreigner from jeonbuktbl where year = %s group by name
+            union select name, sum(korean) as korean, sum(foreigner) as foreigner from jeonnamtbl where year = %s group by name
+            union select name, sum(korean) as korean, sum(foreigner) as foreigner from sejongtbl where year = %s group by name
+            union select name, sum(korean) as korean, sum(foreigner) as foreigner from ulsantbl where year = %s group by name
+            order by korean+foreigner desc limit 5;'''
+    cursor.execute(sql, (year,year,year,year,year,year,year,year,year,year,year,year,year,year,year,year,year))
+    result = cursor.fetchall()
+
+    temp_list = []
+    for row in result:
+        temp_dic = {}
+        temp_dic['name'] = row[0]
+        temp_dic['korean'] = int(row[1])
+        temp_dic['foreigner'] = int(row[2])
+        temp_list.append(temp_dic)
+        
+    # 접속 종료
+    conn.close()
+    return temp_list
   
 # 각 지역별로 인기있는 관광지 가져오는 함수
 def get_popular_list_nation(name):
@@ -96,7 +134,7 @@ def get_popular_list_nation(name):
     conn.close()
     return temp_list, cityname
 
-# 최근 5년치 월별로 인기있는 관광지 가져오는 함수
+# 최근 5년치 월별로 인기있는 관광지 가져오는 함수(해외)
 def get_popular_list_month_loc_fo(month):
     # 커서 생성
     conn = get_connection_fo()
@@ -111,6 +149,35 @@ def get_popular_list_month_loc_fo(month):
         order by total desc limit 5;
     '''
     cursor.execute(sql, (month, month, month, month, month))
+    result = cursor.fetchall()
+
+    temp_list = []
+    for row in result:
+        temp_dic = {}
+        temp_dic['country'] = row[0]
+        temp_dic['total'] = int(row[1])
+        temp_list.append(temp_dic)
+    
+    # 접속 종료
+    conn.close()
+    
+    return temp_list
+
+# 각 연도별로 인기있는 관광지 가져오는 함수(2015-2019)(해외)
+def get_popular_list_year_loc_fo(year):
+    # 커서 생성
+    conn = get_connection_fo()
+    cursor = conn.cursor()
+
+    sql = '''
+        SELECT country, sum(nTourist) as total FROM asiatbl where year = %s group by country
+        UNION SELECT country, sum(nTourist) as total FROM americatbl where year = %s group by country
+        UNION SELECT country, sum(nTourist) as total FROM africatbl where year = %s group by country
+        union SELECT country, sum(nTourist) as total FROM europetbl where year = %s group by country
+        union SELECT country, sum(nTourist) as total FROM oceaniatbl where year = %s group by country
+        order by total desc;
+    '''
+    cursor.execute(sql, (year, year, year, year, year))
     result = cursor.fetchall()
 
     temp_list = []
@@ -189,32 +256,3 @@ def get_course_internal_list_data(location):
 
 if __name__ == "__main__":
     print('db.py')
-
-
-# # 최근 5년치 각 연도별로 인기있는 관광지 가져오는 함수 -> 어떤 데이터를 가져올지?
-# def get_popular_list_year(year):
-#     # 커서 생성
-#     conn = get_connection()
-#     cursor = conn.cursor()
-
-#     sql = '''with abc(gungu, name, korean, foreigner)
-#         as (select GUNGU, name, sum(korean) as korean, sum(foreigner) as foreigner from seoultbl where year = %s group by name)
-#         select gungu, name, korean, foreigner, korean+foreigner as total from abc order by total desc limit 5; '''
-#     cursor.execute(sql, year)
-#     result = cursor.fetchall()
-
-#     temp_list = []
-#     for row in result:
-#         temp_dic = {}
-#         temp_dic['gungu'] = row[0]
-#         temp_dic['name'] = row[1]
-#         temp_dic['korean'] = int(row[2])
-#         temp_dic['foreigner'] = int(row[3])
-#         temp_dic['total'] = int(row[4])
-#         # temp_dic1 = {i: temp_dic}
-#         # temp_list.append(temp_dic1)
-#         temp_list.append(temp_dic)
-    
-#     # 접속 종료
-#     conn.close()
-#     return temp_list

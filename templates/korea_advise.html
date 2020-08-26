@@ -21,13 +21,6 @@
 <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
 <!-- btn클릭하면 기존 데이터 지우고 데이터 append -->
 <script>
-    // var selMonth = document.getElementById("selMonth");
-    // var month = selMonth.value;
-    // var selLoc = document.getElementById("selLoc");
-    // var loc = selLoc.value;
-    // // 들어온 값, 지역 페이지에 따라 보내기
-    // location.href ="korea_month_"+month+"+loc_"+loc;
-
      $(document).ready(function () {
         $('#btn1').click(function(){
             $('#adIframe').empty();
@@ -77,14 +70,6 @@
             $('#adIframe').empty();
             $('#adIframe').append("<p><iframe src='/korea_month_12' style='width: 100%; height:600px; border:none'></iframe></p>");
         })
-        // $('#btn20').click(function(){
-        //     $('#adIframe').empty();
-        //     $('#adIframe').append("<p><iframe src='/korea_month_12+loc_1' style='width: 100%; height:600px; border:none'></iframe></p>");
-        // })
-        // $('#btn21').click(function(){
-        //     $('#adIframe').empty();
-        //     $('#adIframe').append("<p><iframe src='/korea_month_12+loc_1' style='width: 100%; height:600px; border:none'></iframe></p>");
-        // })
 
         //지역 커서이동
         $('#btn21').click(function(){
@@ -214,5 +199,5 @@
   <hr>
 
  <!-- 월별 추천 iframe 위치 지정 -->
- <div id="adIframe"><p><iframe src='/korea_month_8' style='width: 100%; height:600px; border:none'></iframe></p></div> 
+ <div id="adIframe"><p><iframe src='/korea_month_{{month}}' style='width: 100%; height:600px; border:none'></iframe></p></div> 
 {% endblock %}

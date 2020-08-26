@@ -64,7 +64,7 @@
       </tr>
       {% for temp_dic in data %}
       <tr class="text-center" id="{{temp_dic.city}}">
-          <td><img src="{{ url_for('static', filename=path[temp_dic.name])}}" alt="{{course_dict.index(temp_dic)}}" width="400" height="300"></td>
+          <td><img src="{{ url_for('static', filename=path[temp_dic.name])}}" alt="이미지 없음" width="400" height="300"></td>
           <td>{{temp_dic.name}}</td>
           <td>{{temp_dic.score}}</td>
           <td>{{temp_dic.description}}</td>

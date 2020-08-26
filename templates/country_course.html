@@ -72,7 +72,7 @@
       </tr>
       {% for temp_dic in course_dict %}
       <tr class="text-center" id="{{temp_dic.city}}">
-          <td><img src="{{ url_for('static', filename=path[course_dict.index(temp_dic)])}}" alt="{{path[x]}}"></td>
+          <td><img src="{{ url_for('static', filename=path[course_dict.index(temp_dic)])}}" alt="{{path[x]}}" width="400" height="300"></td>
           <td>{{temp_dic.city}}</td>
           <td>{{temp_dic.name}}</td>
           <td>{{temp_dic.score}}</td>

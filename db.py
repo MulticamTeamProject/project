@@ -340,8 +340,8 @@ def get_course_internal_list_data(location):
     conn = get_connection_in()
     cursor = conn.cursor()
 
-    sql = 'select name, score, description from %s limit 30;'
-    cursor.execute(sql, location)
+    sql = 'select name, score, description from %s limit 30;'%(location)
+    cursor.execute(sql)
     result = cursor.fetchall()
 
     # 지역명 받아오기

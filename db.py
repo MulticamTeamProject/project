@@ -9,7 +9,8 @@ locDict = {1:'seoultbl', 2:'gangwontbl', 3:'gyeonggitbl', 4:'gyeongnamtbl', 5:'g
 
 city = {'seoul':'서울', 'gangwon':'강원', 'gyeonggi':'경기', 'gyeongnam':'경남', 'gyeongbuk':'경북',
                  'gwangju':'광주', 'daegu':'대구', 'daejeon':'대전', 'busan':'부산', 'sejong':'세종', 
-                 'ulsan':'울산', 'incheon':'인천', 'jeonnam':'전남', 'jeonbuk':'전북', 'jeju':'제주', 'chungnam':'충남', 'chungbuk':'충북'}
+                 'ulsan':'울산', 'incheon':'인천', 'jeonnam':'전남', 'jeonbuk':'전북', 'jeju':'제주', 'chungnam':'충남', 'chungbuk':'충북',
+                 'chungcheong':'충청', 'gyeongsang':'경상', 'jeolla':'전라'}
 
 # 각 테이블의 전체 리스트 가져오는 함수
 def get_tourpoint_list():

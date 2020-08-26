@@ -59,11 +59,9 @@ def overseas_course(country):
         course_dict, city_list = db.get_course_select('americadb', city_db[country])
     else:
         course_dict, city_list = db.get_course_select('asiadb', city_db[country])
-    path = []
+    path = {}
     for x in course_dict:
-        p = 'images/external_img/' + x['name'] + '.jpg'
-        print(p)
-        path.append(p)
+        path[x['name']] = 'images/external_img/' + x['name'] + '.jpg'
     return render_template('country_course.html', course_dict = course_dict, totalCount = len(course_dict), city_list = city_list, path = path)
 
 
@@ -89,11 +87,9 @@ def country_course():
 @app.route('/select_country_course<continent>+<country>') # 선택된 나라 데이터 뿌리기
 def select_country_course(continent, country):
     course_dict, city_list = db.get_course_select(continent, country)
-    path = []
+    path = {}
     for x in course_dict:
-        p = 'images/external_img/' + x['name'] + '.jpg'
-        print(p)
-        path.append(p)
+        path[x['name']] = 'images/external_img/' + x['name'] + '.jpg'
     return render_template('country_course.html', course_dict = course_dict, totalCount = len(course_dict), city_list = city_list, path = path)
 
 # 서버실행

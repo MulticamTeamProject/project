@@ -4,77 +4,66 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- 부트스트랩 연결 -->
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- Popper JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <!--css font-->
-    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
-    <!--그림폰트 연결-->
-     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" 
-     integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous"> 
+  <!-- 부트스트랩 연결 -->
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- Popper JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <!--css font-->
+  <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
+  <!--그림폰트 연결-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+    integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 </head>
 <style>
-  /* @font-face {
-    font-family:'BlackHanSans';
-    src: url('/static/fonts/BlackHanSans-Regular.ttf');
-  }
-  .m-trip-sketch__inner{
-    display:flex;
-    font-size:40px;
-    font-family: 'BlackHanSans';;
-  }
-  .c-sketch-text-v2__text{
-    flex:2;
-    margin-right: 70px;
-    font-size:20px;
-  } */
   @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Nanum+Gothic:wght@700&display=swap');
-  table{
+
+  table {
     font-family: 'Nanum Gothic', sans-serif;
   }
-  h1{
-        font-size: 40px;
-        text-align: center;
-        /* font-family: 'Noto Sans KR', sans-serif; */
-        font-family: 'Do Hyeon', sans-serif;
-        /* padding: 20px; */
-    }
-    .btn{
-      font-family: 'Nanum Gothic', sans-serif;
-    }
 
+  h1 {
+    font-size: 40px;
+    text-align: center;
+    font-family: 'Do Hyeon', sans-serif;
+  }
+
+  .btn {
+    font-family: 'Nanum Gothic', sans-serif;
+  }
 </style>
+
 <body>
   <!--첫 시작 페이지-->
   <!--이전에 상속받은 layout.html이 날아옴-->
   {% extends 'layout.html' %}
   {% block pageTitle %}
-  <h1 class="text-center" style="margin-top: 50px; margin-bottom: 20px;"><span style="color: red;">{{loc_name}}</span> 주요 관광지</h1>
+  <h1 class="text-center" style="margin-top: 50px; margin-bottom: 20px;"><span style="color: red;">{{loc_name}}</span>
+    주요 관광지</h1>
   <hr>
   <!-- <h2 class="text-center" style="margin: 30px;">여행지 수 : {{totalCount}}</h2> -->
   <table cellpadding="10" cellspacing="0" align="center" class="table table-bordered table-hover" style="width: 80%;">
-      <tr class="table-primary text-center">
-          <th> </th>
-          <th>Name</th>
-          <th>Score</th>
-          <th>Description</th>
-      </tr>
-      {% for temp_dic in data %}
-      <tr class="text-center" id="{{temp_dic.city}}">
-          <td><img src="{{ url_for('static', filename=path[temp_dic.name])}}" alt="no image" width="400" height="300"></td>
-          <td width="150">{{temp_dic.name}}</td>
-          <td>{{temp_dic.score}}</td>
-          <td>{{temp_dic.description}}</td>
-      </tr>
-      {% endfor %}
+    <tr class="table-primary text-center">
+      <th> </th>
+      <th>Name</th>
+      <th>Score</th>
+      <th>Description</th>
+    </tr>
+    {% for temp_dic in data %}
+    <tr class="text-center" id="{{temp_dic.city}}">
+      <td><img src="{{ url_for('static', filename=path[temp_dic.name])}}" alt="no image" width="400" height="300"></td>
+      <td width="150">{{temp_dic.name}}</td>
+      <td>{{temp_dic.score}}</td>
+      <td>{{temp_dic.description}}</td>
+    </tr>
+    {% endfor %}
   </table>
   <p class="text-center"><a href="/select_internal_course" class="btn btn-light">이전 페이지로 이동</a></p>
-  {% endblock %} 
+  {% endblock %}
 </body>
+
 </html>

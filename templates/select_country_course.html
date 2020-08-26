@@ -4,49 +4,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- 부트스트랩 연결 -->
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- Popper JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <!--css font-->
-    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
-    <!--그림폰트 연결-->
-     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" 
-     integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous"> 
+  <!-- 부트스트랩 연결 -->
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- Popper JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <!--css font-->
+  <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
+  <!--그림폰트 연결-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+    integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 </head>
 <style>
-  /* @font-face {
-    font-family:'BlackHanSans';
-    src: url('/static/fonts/BlackHanSans-Regular.ttf');
-  .m-trip-sketch__inner{
-    display:flex;
-    font-size:40px;
-    font-family: 'BlackHanSans';;
-  }
-  .c-sketch-text-v2__text{
-    flex:2;
-    margin-right: 70px;
-    font-size:20px;
-  } */
-  /* @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@700&family=Noto+Sans+KR:wght@700&display=swap'); */
   @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Nanum+Gothic:wght@700&display=swap');
-    
-  .title{
-        font-size: 40px;
-        text-align: center;
-        /* font-family: 'Noto Sans KR', sans-serif; */
-        font-family: 'Do Hyeon', sans-serif;
-        padding: 20px;
-    }
-  .btn{
+
+  .title {
+    font-size: 40px;
+    text-align: center;
+    font-family: 'Do Hyeon', sans-serif;
+    padding: 20px;
+  }
+
+  .btn {
     font-family: 'Nanum Gothic', sans-serif;
-    }
+  }
 </style>
+
 <body>
   <!--첫 시작 페이지-->
   <!--이전에 상속받은 layout.html이 날아옴-->
@@ -55,109 +42,108 @@
   <h1 class="title"><span style="color: red;"></span>각 나라별 코스</h1>
   <hr>
   <script>
-    function setCategory2(){
-    form = document.search;
-    if(document.search.category1.value == "asiadb"){
-    form.category2.length = 1;
-    form.category2.options[1] = new Option("일본");
-    form.category2.options[1].value = "japan_tbl";
-    form.category2.options[2] = new Option("중국");
-    form.category2.options[2].value = "china_tbl";
-    form.category2.options[3] = new Option("필리핀");
-    form.category2.options[3].value = "philippines_tbl";
-    form.category2.options[4] = new Option("홍콩");
-    form.category2.options[4].value = "hongkong_tbl";
-    form.category2.options[5] = new Option("대만");
-    form.category2.options[5].value = "taiwan_tbl";
-    form.category2.options[6] = new Option("베트남");
-    form.category2.options[6].value = "vietnam_tbl";
-    form.category2.options[7] = new Option("태국");
-    form.category2.options[7].value = "thailand_tbl";
+    function setCategory2() {
+      form = document.search;
+      if (document.search.category1.value == "asiadb") {
+        form.category2.length = 1;
+        form.category2.options[1] = new Option("일본");
+        form.category2.options[1].value = "japan_tbl";
+        form.category2.options[2] = new Option("중국");
+        form.category2.options[2].value = "china_tbl";
+        form.category2.options[3] = new Option("필리핀");
+        form.category2.options[3].value = "philippines_tbl";
+        form.category2.options[4] = new Option("홍콩");
+        form.category2.options[4].value = "hongkong_tbl";
+        form.category2.options[5] = new Option("대만");
+        form.category2.options[5].value = "taiwan_tbl";
+        form.category2.options[6] = new Option("베트남");
+        form.category2.options[6].value = "vietnam_tbl";
+        form.category2.options[7] = new Option("태국");
+        form.category2.options[7].value = "thailand_tbl";
+      }
+      if (document.search.category1.value == "europedb") {
+        form.category2.length = 1;
+        form.category2.options[1] = new Option("영국");
+        form.category2.options[1].value = "england_tbl";
+        form.category2.options[2] = new Option("러시아");
+        form.category2.options[2].value = "russia_tbl";
+        form.category2.options[3] = new Option("슬로베니아");
+        form.category2.options[3].value = "slovenian_tbl";
+        form.category2.options[4] = new Option("스페인");
+        form.category2.options[4].value = "spain_tbl";
+        form.category2.options[5] = new Option("독일");
+        form.category2.options[5].value = "germany_tbl";
+        form.category2.options[6] = new Option("오스트리아");
+        form.category2.options[6].value = "austria_tbl";
+      }
+      if (document.search.category1.value == "americadb") {
+        form.category2.length = 1;
+        form.category2.options[1] = new Option("미국");
+        form.category2.options[1].value = "usa_tbl";
+        form.category2.options[2] = new Option("캐나다");
+        form.category2.options[2].value = "canada_tbl";
+        form.category2.options[3] = new Option("멕시코");
+        form.category2.options[3].value = "mexico_tbl";
+        form.category2.options[4] = new Option("브라질");
+        form.category2.options[4].value = "brazil_tbl";
+      }
+      if (document.search.category1.value == "oceaniadb") {
+        form.category2.length = 1;
+        form.category2.options[1] = new Option("호주");
+        form.category2.options[1].value = "australia_tbl";
+        form.category2.options[2] = new Option("피지");
+        form.category2.options[2].value = "fiji_tbl";
+        form.category2.options[3] = new Option("괌");
+        form.category2.options[3].value = "guam_tbl";
+        form.category2.options[4] = new Option("뉴질랜드");
+        form.category2.options[4].value = "newzealand_tbl";
+        form.category2.options[4] = new Option("팔라우");
+        form.category2.options[4].value = "palau_tbl";
+      }
+      if (document.search.category1.value == "aflicadb") {
+        form.category2.length = 1;
+        form.category2.options[1] = new Option("세이쉘");
+        form.category2.options[1].value = "seychelles_tbl";
+        form.category2.options[2] = new Option("짐바브웨");
+        form.category2.options[2].value = "zimbabwe_tbl";
+        form.category2.options[3] = new Option("모리셔스");
+        form.category2.options[3].value = "mauritius_tbl";
+        form.category2.options[4] = new Option("스와질랜드");
+        form.category2.options[4].value = "eswatini_tbl";
+        form.category2.options[5] = new Option("우간다");
+        form.category2.options[5].value = "uganda_tbl";
+        form.category2.options[6] = new Option("남아공");
+        form.category2.options[6].value = "southafrica_tbl";
+      }
     }
-    if(document.search.category1.value == "europedb"){
-    form.category2.length = 1;
-    form.category2.options[1] = new Option("영국");
-    form.category2.options[1].value = "england_tbl";
-    form.category2.options[2] = new Option("러시아");
-    form.category2.options[2].value = "russia_tbl";
-    form.category2.options[3] = new Option("슬로베니아");
-    form.category2.options[3].value = "slovenian_tbl";
-    form.category2.options[4] = new Option("스페인");
-    form.category2.options[4].value = "spain_tbl";
-    form.category2.options[5] = new Option("독일");
-    form.category2.options[5].value = "germany_tbl";
-    form.category2.options[6] = new Option("오스트리아");
-    form.category2.options[6].value = "austria_tbl";
-    }
-    if(document.search.category1.value == "americadb"){
-    form.category2.length = 1;
-    form.category2.options[1] = new Option("미국");
-    form.category2.options[1].value = "usa_tbl";
-    form.category2.options[2] = new Option("캐나다");
-    form.category2.options[2].value = "canada_tbl";
-    form.category2.options[3] = new Option("멕시코");
-    form.category2.options[3].value = "mexico_tbl";
-    form.category2.options[4] = new Option("브라질");
-    form.category2.options[4].value = "brazil_tbl";
-    }
-    if(document.search.category1.value == "oceaniadb"){
-    form.category2.length = 1;
-    form.category2.options[1] = new Option("호주");
-    form.category2.options[1].value = "australia_tbl";
-    form.category2.options[2] = new Option("피지");
-    form.category2.options[2].value = "fiji_tbl";
-    form.category2.options[3] = new Option("괌");
-    form.category2.options[3].value = "guam_tbl";
-    form.category2.options[4] = new Option("뉴질랜드");
-    form.category2.options[4].value = "newzealand_tbl";
-    form.category2.options[4] = new Option("팔라우");
-    form.category2.options[4].value = "palau_tbl";
-    }
-    if(document.search.category1.value == "aflicadb"){
-    form.category2.length = 1;
-    form.category2.options[1] = new Option("세이쉘");
-    form.category2.options[1].value = "seychelles_tbl";
-    form.category2.options[2] = new Option("짐바브웨");
-    form.category2.options[2].value = "zimbabwe_tbl";
-    form.category2.options[3] = new Option("모리셔스");
-    form.category2.options[3].value = "mauritius_tbl";
-    form.category2.options[4] = new Option("스와질랜드");
-    form.category2.options[4].value = "eswatini_tbl";
-    form.category2.options[5] = new Option("우간다");
-    form.category2.options[5].value = "uganda_tbl";
-    form.category2.options[6] = new Option("남아공");
-    form.category2.options[6].value = "southafrica_tbl";
-    }
-    }
-    </script>
-    <div class="text-center">
+  </script>
+  <div class="text-center">
     <form name="search">
-    <select id="category1" onchange="setCategory2()" class="btn btn-light dropdown-toggle">
-    <option value="">대륙 선택</option>
-    <option value="asiadb">아시아</option>
-    <option value="europedb">유럽</option>
-    <option value="americadb">아메리카</option>
-    <option value="oceaniadb">오세아니아</option>
-    <option value="aflicadb">아프리카</option>
-    </select>
-    <select id="category2" class="btn btn-light dropdown-toggle">
-    <option value="">나라 선택</option>
-    </select>
-    <input type = "button" class="btn btn-light"
-      value = "선택"
-      onclick = "GetCountry()">
+      <select id="category1" onchange="setCategory2()" class="btn btn-light dropdown-toggle">
+        <option value="">대륙 선택</option>
+        <option value="asiadb">아시아</option>
+        <option value="europedb">유럽</option>
+        <option value="americadb">아메리카</option>
+        <option value="oceaniadb">오세아니아</option>
+        <option value="aflicadb">아프리카</option>
+      </select>
+      <select id="category2" class="btn btn-light dropdown-toggle">
+        <option value="">나라 선택</option>
+      </select>
+      <input type="button" class="btn btn-light" value="선택" onclick="GetCountry()">
     </form>
-</div>
-    <script>
-        // 각 나라 선택결과 보냄
-        function GetCountry(){
-        var selConinent = document.getElementById("category1");
-        var continent = selConinent.value;
-        var selCountry = document.getElementById("category2");
-        var country = selCountry.value;
-        location.href ="select_country_course"+continent+'+'+country;
+  </div>
+  <script>
+    // 각 나라 선택결과 보냄
+    function GetCountry() {
+      var selConinent = document.getElementById("category1");
+      var continent = selConinent.value;
+      var selCountry = document.getElementById("category2");
+      var country = selCountry.value;
+      location.href = "select_country_course" + continent + '+' + country;
     }
-    </script>
-    {% endblock %}
+  </script>
+  {% endblock %}
 </body>
+
 </html>

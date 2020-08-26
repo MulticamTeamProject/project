@@ -4,125 +4,123 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- 부트스트랩 연결 -->
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- Popper JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <!--css font-->
-    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
-    <!--그림폰트 연결-->
-     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" 
-     integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous"> 
+  <!-- 부트스트랩 연결 -->
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- Popper JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <!--css font-->
+  <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
+  <!--그림폰트 연결-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+    integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
-     <script type="text/javascript">
-      var stmnLEFT = 10; // 오른쪽 여백 
-      var stmnGAP1 = 0; // 위쪽 여백 
-      var stmnGAP2 = 150; // 스크롤시 브라우저 위쪽과 떨어지는 거리 
-      var stmnBASE = 150; // 스크롤 시작위치 
-      var stmnActivateSpeed = 35; //스크롤을 인식하는 딜레이 (숫자가 클수록 느리게 인식)
-      var stmnScrollSpeed = 20; //스크롤 속도 (클수록 느림)
-      var stmnTimer; 
-      
-      function RefreshStaticMenu() { 
-       var stmnStartPoint, stmnEndPoint; 
-       stmnStartPoint = parseInt(document.getElementById('STATICMENU').style.top, 10); 
-       stmnEndPoint = Math.max(document.documentElement.scrollTop, document.body.scrollTop) + stmnGAP2; 
-       if (stmnEndPoint < stmnGAP1) stmnEndPoint = stmnGAP1; 
-       if (stmnStartPoint != stmnEndPoint) { 
-        stmnScrollAmount = Math.ceil( Math.abs( stmnEndPoint - stmnStartPoint ) / 15 ); 
-        document.getElementById('STATICMENU').style.top = parseInt(document.getElementById('STATICMENU').style.top, 10) + ( ( stmnEndPoint<stmnStartPoint ) ? -stmnScrollAmount : stmnScrollAmount ) + 'px'; 
-        stmnRefreshTimer = stmnScrollSpeed; 
-        }
-       stmnTimer = setTimeout("RefreshStaticMenu();", stmnActivateSpeed); 
-       } 
-      function InitializeStaticMenu() {
-       document.getElementById('STATICMENU').style.right = stmnLEFT + 'px';  //처음에 오른쪽에 위치. left로 바꿔도.
-       document.getElementById('STATICMENU').style.top = document.body.scrollTop + stmnBASE + 'px'; 
-       RefreshStaticMenu();
-       }
-     </script>
-     
-     <style type="text/css">
-     #STATICMENU { margin: 0pt; padding: 0pt;  position: absolute; right: 0px; top: 0px;}
-     </style>
-         
+  <script type="text/javascript">
+    var stmnLEFT = 10; // 오른쪽 여백 
+    var stmnGAP1 = 0; // 위쪽 여백 
+    var stmnGAP2 = 150; // 스크롤시 브라우저 위쪽과 떨어지는 거리 
+    var stmnBASE = 150; // 스크롤 시작위치 
+    var stmnActivateSpeed = 35; //스크롤을 인식하는 딜레이 (숫자가 클수록 느리게 인식)
+    var stmnScrollSpeed = 20; //스크롤 속도 (클수록 느림)
+    var stmnTimer;
+
+    function RefreshStaticMenu() {
+      var stmnStartPoint, stmnEndPoint;
+      stmnStartPoint = parseInt(document.getElementById('STATICMENU').style.top, 10);
+      stmnEndPoint = Math.max(document.documentElement.scrollTop, document.body.scrollTop) + stmnGAP2;
+      if (stmnEndPoint < stmnGAP1) stmnEndPoint = stmnGAP1;
+      if (stmnStartPoint != stmnEndPoint) {
+        stmnScrollAmount = Math.ceil(Math.abs(stmnEndPoint - stmnStartPoint) / 15);
+        document.getElementById('STATICMENU').style.top = parseInt(document.getElementById('STATICMENU').style.top, 10) + ((stmnEndPoint < stmnStartPoint) ? -stmnScrollAmount : stmnScrollAmount) + 'px';
+        stmnRefreshTimer = stmnScrollSpeed;
+      }
+      stmnTimer = setTimeout("RefreshStaticMenu();", stmnActivateSpeed);
+    }
+    function InitializeStaticMenu() {
+      document.getElementById('STATICMENU').style.right = stmnLEFT + 'px';  //처음에 오른쪽에 위치. left로 바꿔도.
+      document.getElementById('STATICMENU').style.top = document.body.scrollTop + stmnBASE + 'px';
+      RefreshStaticMenu();
+    }
+  </script>
+
+  <style type="text/css">
+    #STATICMENU {
+      margin: 0pt;
+      padding: 0pt;
+      position: absolute;
+      right: 0px;
+      top: 0px;
+    }
+  </style>
+
 </head>
 <style>
-  /* @font-face {
-    font-family:'BlackHanSans';
-    src: url('/static/fonts/BlackHanSans-Regular.ttf');
-  }
-  .m-trip-sketch__inner{
-    display:flex;
-    font-size:40px;
-    font-family: 'BlackHanSans';;
-  }
-  .c-sketch-text-v2__text{
-    flex:2;
-    margin-right: 70px;
-    font-size:20px;
-  } */
   @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Nanum+Gothic:wght@700&display=swap');
-  table{
+
+  table {
     font-family: 'Nanum Gothic', sans-serif;
   }
-  h1{
-        font-size: 40px;
-        text-align: center;
-        /* font-family: 'Noto Sans KR', sans-serif; */
-        font-family: 'Do Hyeon', sans-serif;
-        /* padding: 20px; */
-    }
-    .btn{
-      font-family: 'Nanum Gothic', sans-serif;
-    }
 
+  h1 {
+    font-size: 40px;
+    text-align: center;
+    /* font-family: 'Noto Sans KR', sans-serif; */
+    font-family: 'Do Hyeon', sans-serif;
+    /* padding: 20px; */
+  }
+
+  .btn {
+    font-family: 'Nanum Gothic', sans-serif;
+  }
 </style>
+
 <body onload="InitializeStaticMenu();">
   <div id="STATICMENU" style="background-color: beige;">
     <div id=#header><a href="#top" class="btn btn-link">Top</a></div>
     {% for city in city_list %}
-  <div id="#{{city}}"><a href="#{{city}}" class="btn btn-link">{{city}}</a></div>
-  {% endfor %}
-    </div>
+    <div id="#{{city}}"><a href="#{{city}}" class="btn btn-link">{{city}}</a></div>
+    {% endfor %}
+  </div>
   <!--첫 시작 페이지-->
   <!--이전에 상속받은 layout.html이 날아옴-->
   {% extends 'layout.html' %}
   {% block pageTitle %}
-  <h1 id="top" class="text-center" style="margin-top: 50px; margin-bottom: 20px;"><span style="color: red;">{{course_dict[0]['nation'].upper()}}</span> 주요 관광지</h1>
+  <h1 id="top" class="text-center" style="margin-top: 50px; margin-bottom: 20px;"><span
+      style="color: red;">{{course_dict[0]['nation'].upper()}}</span> 주요 관광지</h1>
   <hr>
   <!-- city list 출력. 각 city 누르면 아래 리스트에서 해당 city로 감 -->
   <div class="text-center">
-  {% for city in city_list %}
-  <div id="#{{city}}" style="display: inline-block;"><a href="#{{city}}" class="btn btn-link">{{city}}</a></div>
-  {% endfor %}
+    {% for city in city_list %}
+    <div id="#{{city}}" style="display: inline-block;"><a href="#{{city}}" class="btn btn-link">{{city}}</a></div>
+    {% endfor %}
   </div>
   <hr>
   <!-- <h2 class="text-center" style="margin: 30px;">여행지 수 : {{totalCount}}</h2> -->
   <table cellpadding="10" cellspacing="0" align="center" class="table table-bordered table-hover" style="width: 80%;">
-      <tr class="table-primary text-center">
-          <th> </th>
-          <th>City</th>
-          <th>Name</th>
-          <th>Score</th>
-          <th>Description</th>
-      </tr>
-      {% for temp_dic in course_dict %}
-      <tr class="text-center" id="{{temp_dic.city}}">
-          <td><img src="{{ url_for('static', filename=path[course_dict.index(temp_dic)])}}" alt="이미지 없음" width="400" height="300"></td>
-          <td>{{temp_dic.city}}</td>
-          <td>{{temp_dic.name}}</td>
-          <td>{{temp_dic.score}}</td>
-          <td>{{temp_dic.description}}</td>
-      </tr>
-      {% endfor %}
+    <tr class="table-primary text-center">
+      <th> </th>
+      <th>City</th>
+      <th>Name</th>
+      <th>Score</th>
+      <th>Description</th>
+    </tr>
+    {% for temp_dic in course_dict %}
+    <tr class="text-center" id="{{temp_dic.city}}">
+      <td><img src="{{ url_for('static', filename=path[course_dict.index(temp_dic)])}}" alt="이미지 없음" width="400"
+          height="300"></td>
+      <td>{{temp_dic.city}}</td>
+      <td>{{temp_dic.name}}</td>
+      <td>{{temp_dic.score}}</td>
+      <td>{{temp_dic.description}}</td>
+    </tr>
+    {% endfor %}
   </table>
   <p class="text-center"><a href="/select_country_course" class="btn btn-light">이전 페이지로 이동</a></p>
-  {% endblock %} 
+  {% endblock %}
 </body>
+
 </html>

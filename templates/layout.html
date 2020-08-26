@@ -2,95 +2,102 @@
 <html lang="ko">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
     @import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@500&display=swap');
-    /* @font-face {
-    font-family:'BMJUA';
-    src: url('/static/fonts/BMJUA_ttf.ttf');
-    } */
-    .navbar-brand{
-    /* font-family: 'BMJUA'; */
-    /* font-family: 'Nanum Pen Script', cursive; */
-    font-family: 'Jua', sans-serif;
+
+    .navbar-brand {
+      font-family: 'Jua', sans-serif;
     }
-    .nav-link{
+
+    .nav-link {
       font-family: 'Noto Sans KR', sans-serif;
     }
-    .footer{
+
+    .footer {
       font-family: 'Noto Sans KR', sans-serif;
     }
-    </style>
-    <title>여행가조</title>
-    <!-- 부트스트랩 연결 -->
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- Popper JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <!--css font-->
-    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
-    <!--그림폰트 연결-->
-     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" 
-     integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous"> 
-    <!--사용자정의 css 파일 연결-->
-     <link rel="stylesheet" href="/static/css/custom.css">
-    <style>
-    .footer { width: 100%; height: 15%; clear: both; 
-      background-color:rgb(66, 180, 201); }
-    .navbar-brand{
+  </style>
+  <title>여행가조</title>
+  <!-- 부트스트랩 연결 -->
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- Popper JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <!--css font-->
+  <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
+  <!--그림폰트 연결-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+    integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+  <!--사용자정의 css 파일 연결-->
+  <link rel="stylesheet" href="/static/css/custom.css">
+  <style>
+    .footer {
+      width: 100%;
+      height: 15%;
+      clear: both;
+      background-color: rgb(66, 180, 201);
+    }
+
+    .navbar-brand {
       font-size: 35px;
-      margin-right:4px;
+      margin-right: 4px;
     }
-    .navbar-nav{
+
+    .navbar-nav {
       font-size: 20px;
     }
-    </style> 
+  </style>
 </head>
+
 <body>
   <div class="container">
-		<!-- 상단 헤더 영역 -->
-  <nav class="navbar navbar-expand-lg bg-info navbar-dark fixed top" >
-  <a class="navbar-brand" href="/">여행가조<i class="fas fa-plane"></i></a> 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/advise_korea">국내추천</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/overseas">해외추천</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/select_internal_course">국내코스</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/select_country_course">해외코스</a>
-      </li>
-    </ul>
-  </div>
-  </nav>
-   <!-- 교체 영역1 -->
-  {% block pageTitle %}
-  
-  {% endblock %}
-  <!-- 교체 영역2 -->
-  <!-- <div>컨텐츠 내용</div> -->
-    {% block contents %}
-    
+    <!-- 상단 헤더 영역 -->
+    <nav class="navbar navbar-expand-lg bg-info navbar-dark fixed top">
+      <a class="navbar-brand" href="/">여행가조<i class="fas fa-plane"></i></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/advise_korea">국내추천</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/overseas">해외추천</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/select_internal_course">국내코스</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/select_country_course">해외코스</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!-- 교체 영역1 -->
+    {% block pageTitle %}
+
     {% endblock %}
-  <br>
-  <!-- 하단 카피라이트 영역 -->
-  <div class="footer" style=text-align:center><p>Copyright (C) 여행가조. All Rights Reserved.</p></div>
+    <!-- 교체 영역2 -->
+    <!-- <div>컨텐츠 내용</div> -->
+    {% block contents %}
+
+    {% endblock %}
+    <br>
+    <!-- 하단 카피라이트 영역 -->
+    <div class="footer" style=text-align:center>
+      <p>Copyright (C) 여행가조. All Rights Reserved.</p>
+    </div>
   </div>
   </br>
 </body>

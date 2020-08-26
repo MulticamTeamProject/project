@@ -14,34 +14,23 @@
             color: #E96A6A;
             font-size: 25px;
             font-family: 'Do Hyeon', sans-serif;
-            /* padding: 10px; */
         }
 
         .second {
             color: #E9E96A;
             font-size: 25px;
             font-family: 'Do Hyeon', sans-serif;
-            /* padding: 10px; */
         }
 
         .third {
             color: #6AE993;
             font-size: 25px;
             font-family: 'Do Hyeon', sans-serif;
-            /* padding: 10px; */
         }
 
         #month {
             font-family: 'Noto Sans KR', sans-serif;
         }
-
-        /* .pink2 {
-            color: cornflowerblue;
-        } */
-
-        /* .tc {
-            color: black;
-        } */
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -58,16 +47,8 @@
 
 <body>
     <table align="center" width="80%" cellpadding=20>
-        <!-- <tr>
-            <td align="center">1월</td>
-            <td></td>
-        </tr> -->
         <tr>
             <td align="center" width=70%>
-                <!-- 그래프 테스트 이미지 -->
-                <!-- <img src="/static/image/graph_test.png" width="400px" height="350px"> -->
-
-                <!-- <div class="col-lg-6"> -->
                 <div>
                     <div class="card">
                         <div class="card-body"> <canvas id="myChart1"></canvas> </div>
@@ -80,15 +61,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div class="col-lg-6"> -->
-                <!-- <div>
-                        <div class="card">
-                            <div class="card-body"> <canvas id="myChart3"></canvas> </div>
-                            <div class="card card-body text-center bg-light">
-                                <h3 id="kofo">내국인/외국인</h3>
-                            </div>
-                        </div>
-                    </div> -->
                 <script>
                     var array = {{ popular_dict| tojson}};
                     var label_array = []

@@ -4,49 +4,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- 부트스트랩 연결 -->
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- Popper JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <!--css font-->
-    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
-    <!--그림폰트 연결-->
-     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" 
-     integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous"> 
+  <!-- 부트스트랩 연결 -->
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- Popper JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <!--css font-->
+  <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
+  <!--그림폰트 연결-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+    integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 </head>
 <style>
-  /* @font-face {
-    font-family:'BlackHanSans';
-    src: url('/static/fonts/BlackHanSans-Regular.ttf');
-  .m-trip-sketch__inner{
-    display:flex;
-    font-size:40px;
-    font-family: 'BlackHanSans';;
-  }
-  .c-sketch-text-v2__text{
-    flex:2;
-    margin-right: 70px;
-    font-size:20px;
-  } */
-  /* @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@700&family=Noto+Sans+KR:wght@700&display=swap'); */
   @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Nanum+Gothic:wght@700&display=swap');
-    
-  .title{
-        font-size: 40px;
-        text-align: center;
-        /* font-family: 'Noto Sans KR', sans-serif; */
-        font-family: 'Do Hyeon', sans-serif;
-        padding: 20px;
-    }
-    .btn{
-        font-family: 'Nanum Gothic', sans-serif;
-    }
+
+  .title {
+    font-size: 40px;
+    text-align: center;
+    font-family: 'Do Hyeon', sans-serif;
+    padding: 20px;
+  }
+
+  .btn {
+    font-family: 'Nanum Gothic', sans-serif;
+  }
 </style>
+
 <body>
   <!--첫 시작 페이지-->
   <!--이전에 상속받은 layout.html이 날아옴-->
@@ -54,37 +41,36 @@
   {% block pageTitle %}
   <h1 class="title"><span style="color: red;"></span>각 지역별 코스</h1>
   <hr>
-    <div class="text-center">
+  <div class="text-center">
     <form name="search">
-    <select id="category1" class="btn btn-light dropdown-toggle">
-    <option value="">지역 선택</option>
-    <option value="gangwon_tbl">강원</option>
-    <option value="gyeonggi_tbl">경기</option>
-    <option value="gyeongsang_tbl">경상</option>
-    <option value="gwangju_tbl">광주</option>
-    <option value="daejeon_tbl">대전</option>
-    <option value="busan_tbl">부산</option>
-    <option value="seoul_tbl">서울</option>
-    <option value="sejong_tbl">세종</option>
-    <option value="ulsan_tbl">울산</option>
-    <option value="incheon_tbl">인천</option>
-    <option value="jeolla_tbl">전라</option>
-    <option value="jeju_tbl">제주</option>
-    <option value="chungcheong_tbl">충청</option>
-    </select>
-    <input type = "button" class="btn btn-light"
-      value = "선택"
-      onclick = "GetCountry()">
+      <select id="category1" class="btn btn-light dropdown-toggle">
+        <option value="">지역 선택</option>
+        <option value="gangwon_tbl">강원</option>
+        <option value="gyeonggi_tbl">경기</option>
+        <option value="gyeongsang_tbl">경상</option>
+        <option value="gwangju_tbl">광주</option>
+        <option value="daejeon_tbl">대전</option>
+        <option value="busan_tbl">부산</option>
+        <option value="seoul_tbl">서울</option>
+        <option value="sejong_tbl">세종</option>
+        <option value="ulsan_tbl">울산</option>
+        <option value="incheon_tbl">인천</option>
+        <option value="jeolla_tbl">전라</option>
+        <option value="jeju_tbl">제주</option>
+        <option value="chungcheong_tbl">충청</option>
+      </select>
+      <input type="button" class="btn btn-light" value="선택" onclick="GetCountry()">
     </form>
-    </div>
-    <script>
-        // 각 나라 선택결과 보냄
-        function GetCountry(){
-        var selConinent = document.getElementById("category1");
-        var continent = selConinent.value;
-        location.href ="select_internal_course"+continent;
+  </div>
+  <script>
+    // 각 나라 선택결과 보냄
+    function GetCountry() {
+      var selConinent = document.getElementById("category1");
+      var continent = selConinent.value;
+      location.href = "select_internal_course" + continent;
     }
-    </script>
-    {% endblock %}
+  </script>
+  {% endblock %}
 </body>
+
 </html>
